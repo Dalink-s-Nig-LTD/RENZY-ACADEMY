@@ -1,3 +1,17 @@
+/* ========== CSS Variables ========== */
+:root {
+  --r-primary: #002B5C;
+  --r-accent: #E31B23;
+  --r-bg: #FFFFFF;
+  --r-bg-alt: #F5F5F5;
+  --r-text: #1F2937;
+  --r-text-light: #6B7280;
+  --r-border: #E5E7EB;
+  --r-success: #10B981;
+  --r-warning: #F59E0B;
+  --r-error: #EF4444;
+}
+
 /* ========== Enrollment Modal ========== */
 .enroll-modal {
   position: fixed;
