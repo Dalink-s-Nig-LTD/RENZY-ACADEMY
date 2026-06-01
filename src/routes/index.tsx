@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,6 +37,305 @@ const TESTIMONIALS = [
   { text: "Thank you for your patience in helping me break down concepts until I actually understood them. I am truly grateful.", name: "Aunty Esther", role: "Agile Graduate" },
   { text: "My lecture is going very well with Mr Tayo. Thank you to the entire Renzy Academy team for the support.", name: "Cohort Member", role: "PMI-ACP Trainee" },
 ];
+
+// FAQ Knowledge Base
+const FAQ_DATABASE = [
+  {
+    id: 1,
+    question: "What is PMI-ACP certification?",
+    keywords: ["pmi-acp", "certification", "what is"],
+    answer: "PMI-ACP (Agile Certified Practitioner) is a certification offered by the Project Management Institute that validates your ability to work in Agile environments. It covers Scrum, Kanban, Lean, XP, and Hybrid Agile methodologies."
+  },
+  {
+    id: 2,
+    question: "What are the prerequisites for the PMI-ACP exam?",
+    keywords: ["prerequisite", "requirement", "eligibility", "exam"],
+    answer: "To be eligible for the PMI-ACP exam, you need:\n• 2,000 hours of general project experience (last 5 years)\n• 1,500 hours on Agile project teams (last 3 years)\n• 21 contact hours of Agile training"
+  },
+  {
+    id: 3,
+    question: "How long is the training course?",
+    keywords: ["duration", "course length", "how long", "training"],
+    answer: "Our PMI-ACP training course is typically 40 hours of instruction, spread over 4-6 weeks depending on the cohort. This includes live sessions, practice exams, and Q&A sessions."
+  },
+  {
+    id: 4,
+    question: "What frameworks does the course cover?",
+    keywords: ["framework", "scrum", "kanban", "lean", "xp"],
+    answer: "The course covers 6 Agile frameworks:\n• Scrum\n• Kanban\n• Lean\n• Extreme Programming (XP)\n• Hybrid Agile\n• Iterative and Incremental Development"
+  },
+  {
+    id: 5,
+    question: "Is there a money-back guarantee?",
+    keywords: ["refund", "guarantee", "money back"],
+    answer: "Yes, we offer a 14-day money-back guarantee if you're not satisfied with the course quality. Contact our support team for details."
+  },
+  {
+    id: 6,
+    question: "When is the next cohort starting?",
+    keywords: ["cohort", "start date", "when", "next batch"],
+    answer: "Cohorts start monthly. For the exact dates of upcoming cohorts, please contact us via WhatsApp, email, or fill the enrollment form with your preferred timeline."
+  },
+  {
+    id: 7,
+    question: "How much does the training cost?",
+    keywords: ["price", "cost", "fee", "pricing"],
+    answer: "Pricing varies based on the package and delivery format. For detailed pricing information, please reach out to our team at info@renzyacademy.com or WhatsApp: +2349010692401"
+  },
+  {
+    id: 8,
+    question: "Can I get a refund if I can't complete the course?",
+    keywords: ["refund", "withdrawal", "cancel"],
+    answer: "Refund policies depend on when you withdraw from the course. We offer pro-rated refunds for early withdrawals. Contact our team for specific details."
+  },
+  {
+    id: 9,
+    question: "Do you provide study materials?",
+    keywords: ["materials", "resources", "study", "books"],
+    answer: "Yes! All participants receive comprehensive study materials including:\n• Digital course notes\n• Practice exams\n• Video recordings of all sessions\n• Reference guides"
+  },
+  {
+    id: 10,
+    question: "Is the certification globally recognized?",
+    keywords: ["global", "recognition", "international", "valid"],
+    answer: "Yes, PMI-ACP is globally recognized and valued by employers worldwide. It's respected across technology, finance, healthcare, and other industries."
+  },
+];
+
+// Simple AI matching function
+function findRelevantFAQ(query: string): typeof FAQ_DATABASE[0] | null {
+  const lowerQuery = query.toLowerCase();
+  
+  for (const faq of FAQ_DATABASE) {
+    for (const keyword of faq.keywords) {
+      if (lowerQuery.includes(keyword)) {
+        return faq;
+      }
+    }
+  }
+  
+  // If no exact match, look for partial matches
+  for (const faq of FAQ_DATABASE) {
+    const questionLower = faq.question.toLowerCase();
+    if (lowerQuery.split(" ").some(word => questionLower.includes(word))) {
+      return faq;
+    }
+  }
+  
+  return null;
+}
+
+interface ChatMessage {
+  id: string;
+  text: string;
+  sender: "user" | "assistant";
+  timestamp: Date;
+  faqId?: number;
+}
+
+function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void }) {
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      id: "1",
+      text: "Hi! 👋 I'm Renzy's AI Assistant. I can answer common questions about PMI-ACP training, pricing, prerequisites, and more. What would you like to know?",
+      sender: "assistant",
+      timestamp: new Date(),
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    // Add user message
+    const userMessage: ChatMessage = {
+      id: Date.now().toString(),
+      text: input,
+      sender: "user",
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+
+    // Simulate AI processing delay
+    setTimeout(() => {
+      const relevantFAQ = findRelevantFAQ(input);
+
+      let assistantResponse: ChatMessage;
+
+      if (relevantFAQ) {
+        assistantResponse = {
+          id: (Date.now() + 1).toString(),
+          text: relevantFAQ.answer,
+          sender: "assistant",
+          timestamp: new Date(),
+          faqId: relevantFAQ.id,
+        };
+      } else {
+        assistantResponse = {
+          id: (Date.now() + 1).toString(),
+          text: "I'm not sure about that specific question. Would you like to connect with our live support team for a more detailed answer? They're available to help!",
+          sender: "assistant",
+          timestamp: new Date(),
+        };
+      }
+
+      setMessages((prev) => [...prev, assistantResponse]);
+      setIsLoading(false);
+    }, 500);
+  };
+
+  return (
+    <div className="ai-assistant-container">
+      <div className="ai-assistant">
+        <div className="ai-header">
+          <div className="ai-header-content">
+            <div className="ai-icon">🤖</div>
+            <div>
+              <h3>Renzy AI Assistant</h3>
+              <p>Instant answers to your questions</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="ai-messages">
+          {messages.map((msg) => (
+            <div key={msg.id} className={`ai-message ${msg.sender}`}>
+              <div className="message-bubble">
+                {msg.text}
+              </div>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="ai-message assistant">
+              <div className="message-bubble typing">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        <form onSubmit={handleSendMessage} className="ai-input-form">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask me anything..."
+            disabled={isLoading}
+            className="ai-input"
+          />
+          <button type="submit" disabled={isLoading} className="ai-send-btn">
+            Send
+          </button>
+        </form>
+
+        <div className="ai-footer">
+          <button onClick={onConnectToLiveChat} className="ai-live-chat-btn">
+            💬 Connect to Live Support
+          </button>
+          <p className="ai-footer-text">Can't find what you need? Our team is ready to help!</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LiveChatWidget({ onClose }: { onClose: () => void }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Live chat request:", { name, email, message });
+    setSubmitted(true);
+    setTimeout(onClose, 3000);
+  };
+
+  if (submitted) {
+    return (
+      <div className="live-chat-modal">
+        <div className="live-chat-content" style={{ textAlign: "center", padding: "2rem" }}>
+          <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>✅</div>
+          <h3>Message Sent!</h3>
+          <p>Our team will contact you shortly via WhatsApp or email.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="live-chat-modal" onClick={onClose}>
+      <div className="live-chat-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>×</button>
+        <div className="live-chat-header">
+          <h3>💬 Live Support</h3>
+          <p>Connect with our team</p>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Your Name *</label>
+            <input
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+            />
+          </div>
+          <div className="form-group">
+            <label>Email *</label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+            />
+          </div>
+          <div className="form-group">
+            <label>Message *</label>
+            <textarea
+              required
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Describe your question or concern..."
+              rows={4}
+            />
+          </div>
+          <button type="submit" className="btn-primary" style={{ width: "100%" }}>
+            Send to Support Team
+          </button>
+        </form>
+
+        <div className="live-chat-footer">
+          <p style={{ fontSize: "0.85rem", color: "var(--r-text-light)" }}>
+            Or reach us directly:<br />
+            <a href={`tel:${PHONE_RAW}`} style={{ color: "var(--r-accent)" }}>{PHONE}</a><br />
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ color: "var(--r-accent)" }}>💬 WhatsApp</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function EnrollForm({ onClose }: { onClose: () => void }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", role: "", message: "" });
@@ -103,10 +402,25 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
 
 function Index() {
   const [showForm, setShowForm] = useState(false);
+  const [showAI, setShowAI] = useState(false);
+  const [showLiveChat, setShowLiveChat] = useState(false);
 
   return (
     <div className="renzy">
       {showForm && <EnrollForm onClose={() => setShowForm(false)} />}
+      {showAI && <AIAssistant onConnectToLiveChat={() => { setShowAI(false); setShowLiveChat(true); }} />}
+      {showLiveChat && <LiveChatWidget onClose={() => setShowLiveChat(false)} />}
+
+      {/* AI Chat Button */}
+      {!showAI && (
+        <button 
+          onClick={() => setShowAI(true)}
+          className="ai-chat-button"
+          title="Open AI Assistant"
+        >
+          🤖
+        </button>
+      )}
 
       <nav>
         <div className="nav-container">
