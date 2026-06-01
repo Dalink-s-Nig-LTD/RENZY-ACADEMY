@@ -108,7 +108,6 @@ function Index() {
     <div className="renzy">
       {showForm && <EnrollForm onClose={() => setShowForm(false)} />}
 
-      {/* NAV */}
       <nav>
         <div className="nav-container">
           <a href="/" className="logo-img">
@@ -119,7 +118,6 @@ function Index() {
         </div>
       </nav>
 
-      {/* HERO */}
       <section className="hero">
         <div className="hero-container">
           <div>
@@ -164,7 +162,6 @@ function Index() {
         </div>
       </section>
 
-      {/* WHY PMI-ACP */}
       <section id="why" className="why-section">
         <div className="container">
           <div className="section-header">
@@ -183,7 +180,6 @@ function Index() {
         </div>
       </section>
 
-      {/* INDUSTRIES */}
       <section>
         <div className="container">
           <div className="section-header">
@@ -198,7 +194,6 @@ function Index() {
         </div>
       </section>
 
-      {/* AUDIENCE */}
       <section className="audience-section">
         <div className="container">
           <div className="section-header">
@@ -213,7 +208,6 @@ function Index() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
       <section className="testimonials-section">
         <div className="container">
           <div className="section-header">
@@ -238,7 +232,6 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA */}
       <section id="enroll" className="cta-section">
         <div className="container">
           <div className="cta-content">
@@ -261,7 +254,6 @@ function Index() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer>
         <div className="container">
           <a href="/" className="logo-img" style={{ justifyContent: "center", marginBottom: "1rem" }}>
