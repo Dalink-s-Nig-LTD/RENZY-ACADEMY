@@ -15,6 +15,7 @@ export const Route = createFileRoute("/")({
 
 const LOGO_URL = "/renzy-logo-mark.jpg";
 const PHONE = "+234 901 069 2401";
+const PHONE_RAW = "+2349010692401";
 const EMAIL = "info@renzyacademy.com";
 const WHATSAPP_LINK = "https://wa.me/2349010692401";
 
@@ -43,7 +44,6 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // MVP: In production, send to your backend/API here
     console.log("Enrollment:", form);
     setSubmitted(true);
     setTimeout(onClose, 3000);
@@ -66,7 +66,7 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
       <div className="enroll-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>×</button>
         <h3>Enroll in PMI-ACP Training</h3>
-        <p style={{ color: "var(--muted)", marginBottom: "1.5rem" }}>Fill this form and we will reach out to you shortly.</p>
+        <p style={{ color: "var(--r-text-light)", marginBottom: "1.5rem" }}>Fill this form and we will reach out to you shortly.</p>
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -92,9 +92,9 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
           <button type="submit" className="btn-primary" style={{ width: "100%" }}>Submit Application</button>
         </form>
 
-        <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.875rem", color: "var(--muted)" }}>
-          Or reach us directly: <br />
-          <a href={`tel:${PHONE.replace(/\s/g, "")}`}>{PHONE}</a> · <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.875rem", color: "var(--r-text-light)" }}>
+          Or reach us directly:<br />
+          <a href={`tel:${PHONE_RAW}`} style={{ color: "var(--r-accent)" }}>{PHONE}</a> · <a href={`mailto:${EMAIL}`} style={{ color: "var(--r-accent)" }}>{EMAIL}</a>
         </div>
       </div>
     </div>
@@ -253,7 +253,7 @@ function Index() {
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">💬 WhatsApp Us</a>
             </div>
             <div className="contact-bar">
-              <a href={`tel:${PHONE.replace(/\s/g, "")}`}>📞 {PHONE}</a>
+              <a href={`tel:${PHONE_RAW}`}>📞 {PHONE}</a>
               <span>|</span>
               <a href={`mailto:${EMAIL}`}>✉️ {EMAIL}</a>
             </div>
@@ -269,7 +269,7 @@ function Index() {
             <span className="logo-text" style={{ color: "white" }}>RENZY<<em>.</em>ACADEMY</span>
           </a>
           <div className="footer-contact">
-            <a href={`tel:${PHONE.replace(/\s/g, "")}`}>{PHONE}</a>
+            <a href={`tel:${PHONE_RAW}`}>{PHONE}</a>
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
           </div>
           <p>© 2026 Renzy Academy. All rights reserved.</p>
