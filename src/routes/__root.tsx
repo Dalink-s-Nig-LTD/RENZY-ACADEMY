@@ -91,6 +91,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      {
+        rel: "icon",
+        type: "image/jpeg",
+        href: "/__l5e/assets-v1/b99e9147-42f7-4c83-b799-9063db37f736/renzy-logo-mark.jpg",
+      },
     ],
   }),
   shellComponent: RootShell,

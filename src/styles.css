@@ -178,6 +178,36 @@
 }
 .renzy .logo { font-size: 1.5rem; font-weight: 800; color: var(--r-primary); text-decoration: none; }
 .renzy .logo span { color: var(--r-accent); }
+.renzy .logo-img { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.renzy .logo-img img { height: 40px; width: auto; display: block; }
+.renzy .logo-img .logo-text { font-size: 1.25rem; font-weight: 800; color: var(--r-primary); letter-spacing: -0.01em; }
+.renzy .logo-img .logo-text em { color: var(--r-accent); font-style: normal; }
+
+/* Testimonials */
+.renzy .testimonials-section { background: var(--r-bg-alt); }
+.renzy .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.renzy .testimonial-card {
+  background: white; border-radius: 20px; padding: 2.25rem;
+  border: 1px solid var(--r-border); position: relative;
+  box-shadow: 0 4px 24px rgba(20,39,155,0.05);
+  transition: all 0.3s ease;
+}
+.renzy .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(20,39,155,0.10); }
+.renzy .testimonial-card .quote-mark {
+  position: absolute; top: 1rem; right: 1.5rem; font-size: 4rem;
+  font-family: Georgia, serif; line-height: 1; color: var(--r-accent); opacity: 0.15;
+}
+.renzy .testimonial-text { color: var(--r-text); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.renzy .testimonial-author { display: flex; align-items: center; gap: 0.9rem; }
+.renzy .testimonial-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--r-blue), var(--r-accent));
+  color: white; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.1rem;
+}
+.renzy .testimonial-name { font-weight: 700; color: var(--r-primary); font-size: 0.95rem; }
+.renzy .testimonial-role { font-size: 0.82rem; color: var(--r-text-light); }
+.renzy .testimonial-stars { color: #f59e0b; margin-bottom: 0.75rem; letter-spacing: 2px; }
 .renzy .nav-cta {
   background: var(--r-accent); color: white; padding: 0.6rem 1.5rem;
   border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
