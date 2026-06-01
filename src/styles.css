@@ -147,16 +147,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 .renzy {
-  --r-primary: #0f172a;
-  --r-accent: #3b82f6;
-  --r-accent-light: #60a5fa;
-  --r-accent-dark: #1d4ed8;
+  --r-primary: #14279B;
+  --r-accent: #E31B23;
+  --r-accent-light: #ff4d54;
+  --r-accent-dark: #b8141b;
+  --r-blue: #14279B;
+  --r-blue-dark: #0b1768;
   --r-success: #10b981;
   --r-text: #1e293b;
   --r-text-light: #64748b;
   --r-bg: #ffffff;
   --r-bg-alt: #f8fafc;
-  --r-bg-dark: #0f172a;
+  --r-bg-dark: #0b1768;
   --r-border: #e2e8f0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--r-text);
