@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Red R shape -->
+  <path d="M 40 40 L 40 160 L 70 160 L 70 110 L 100 110 Q 115 110 115 95 Q 115 80 100 80 L 70 80 L 70 40 Z" fill="#E31E24" stroke="none"/>
+  
+  <!-- Blue circular arrow/swoosh -->
+  <path d="M 110 40 Q 155 40 172 80 Q 185 120 172 160 Q 155 175 130 175" 
+        fill="none" stroke="#003366" stroke-width="20" stroke-linecap="round"/>
+</svg>
