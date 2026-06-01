@@ -767,7 +767,6 @@ footer p {
   border-radius: 50%;
   background: var(--r-accent);
   border: none;
-  font-size: 1.75rem;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(227, 27, 35, 0.4);
   transition: all 0.3s ease;
@@ -776,6 +775,15 @@ footer p {
   align-items: center;
   justify-content: center;
   animation: slideIn 0.3s ease;
+  color: white;
+  padding: 0;
+  line-height: 1;
+}
+
+.ai-chat-button svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
 }
 
 .ai-chat-button:hover {
@@ -785,6 +793,11 @@ footer p {
 
 .ai-chat-button:active {
   transform: scale(0.95);
+}
+
+.ai-chat-button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 @keyframes slideIn {
@@ -834,6 +847,16 @@ footer p {
 
 .ai-icon {
   font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.ai-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .ai-header h3 {
@@ -1003,7 +1026,7 @@ footer p {
 
 /* Footer */
 .ai-footer {
-  padding: 0.875rem;
+  padding: 1rem;
   background: white;
   border-top: 1px solid var(--r-border);
 }
@@ -1013,18 +1036,18 @@ footer p {
   background: var(--r-primary);
   color: white;
   border: none;
-  padding: 0.75rem;
+  padding: 0.625rem 1rem;
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
 
 .ai-live-chat-btn:hover {
-  background: #0a1f3d;
-  transform: translateY(-2px);
+  background: #001f47;
+  transform: translateY(-1px);
 }
 
 .ai-footer-text {
@@ -1034,7 +1057,7 @@ footer p {
   margin: 0;
 }
 
-/* ========== LIVE CHAT MODAL ========== */
+/* Live Chat Modal */
 .live-chat-modal {
   position: fixed;
   inset: 0;
@@ -1043,7 +1066,7 @@ footer p {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001;
+  z-index: 1000;
   padding: 1rem;
   animation: fadeIn 0.2s ease;
 }
@@ -1067,13 +1090,13 @@ footer p {
 
 .live-chat-header h3 {
   color: var(--r-primary);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 0.25rem;
 }
 
 .live-chat-header p {
   color: var(--r-text-light);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
 .live-chat-footer {
@@ -1091,9 +1114,9 @@ footer p {
 
 .live-chat-footer a:hover {
   opacity: 0.8;
+  text-decoration: underline;
 }
 
-/* ========== Animations ========== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1114,47 +1137,15 @@ footer p {
   }
 }
 
-/* ========== MOBILE RESPONSIVE (< 768px) ========== */
-@media (max-width: 767px) {
-  /* Navigation */
-  nav {
-    padding: 0.625rem 1rem;
-  }
-
-  .nav-container {
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-
-  .logo-img img {
-    height: 32px;
-  }
-
-  .logo-text {
-    font-size: 0.875rem;
-  }
-
-  .nav-cta {
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-  }
-
-  /* Hero Section */
-  .hero {
-    padding: 2rem 1rem;
-  }
-
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
   .hero-container {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
   .hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.875rem;
   }
 
   .hero-stats {
@@ -1162,113 +1153,37 @@ footer p {
     gap: 1rem;
   }
 
-  .stat-number {
-    font-size: 1.5rem;
+  .ai-assistant {
+    max-width: 90vw;
+    height: 500px;
   }
 
-  .stat-label {
-    font-size: 0.8rem;
+  .ai-chat-button {
+    width: 50px;
+    height: 50px;
   }
 
-  .hero-cta-group {
-    gap: 0.75rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    flex: 1;
-    min-width: 150px;
-  }
-
-  .hero-visual {
-    display: none;
-  }
-
-  .hero-card {
-    display: none;
-  }
-
-  /* Sections */
-  section {
-    padding: 2.5rem 1rem;
-  }
-
-  .cta-section {
-    padding: 2.5rem 1rem;
-  }
-
-  /* Section Headers */
-  .section-header {
-    margin-bottom: 2rem;
+  .ai-chat-button svg {
+    width: 24px;
+    height: 24px;
   }
 
   .section-title {
     font-size: 1.5rem;
   }
 
-  /* Benefits Grid */
-  .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .benefit-card {
-    padding: 1.5rem;
-  }
-
-  .benefit-icon {
-    font-size: 2rem;
-  }
-
-  .benefit-card h3 {
-    font-size: 1.125rem;
-  }
-
-  /* Industries Grid */
-  .industries-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .renzy .industry-card {
-    padding: 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  /* Audience Grid */
-  .audience-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .renzy .audience-card {
-    padding: 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  /* Testimonials Grid */
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .testimonial-card {
-    padding: 1.5rem;
-  }
-
-  .testimonial-text {
-    font-size: 0.95rem;
-  }
-
-  /* CTA Section */
   .cta-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
-  .cta-section > .container > .cta-content > p {
-    font-size: 1rem;
+  .hero-cta-group {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
   }
 
   .cta-buttons {
@@ -1279,140 +1194,45 @@ footer p {
   .btn-outline-white {
     width: 100%;
   }
+}
 
-  .contact-bar {
-    font-size: 0.875rem;
-    gap: 0.75rem;
+@media (max-width: 480px) {
+  .hero {
+    padding: 2rem 1rem;
   }
 
-  .contact-bar span {
-    display: none;
+  .hero h1 {
+    font-size: 1.5rem;
   }
 
-  /* Footer */
-  footer {
-    padding: 2rem 1rem 1rem;
+  .section-header {
+    margin-bottom: 2rem;
   }
 
-  .footer-contact {
-    gap: 1rem;
+  .testimonials-grid,
+  .benefits-grid {
+    grid-template-columns: 1fr;
   }
 
-  .footer-contact a {
-    font-size: 0.85rem;
+  .frameworks-grid {
+    grid-template-columns: 1fr;
   }
 
-  /* Modal */
-  .enroll-modal,
-  .live-chat-modal {
-    padding: 1rem;
+  .ai-assistant {
+    max-width: 100vw;
+    height: 100vh;
+    border-radius: 0;
   }
 
-  .enroll-modal-content,
-  .live-chat-content {
-    padding: 1.5rem;
-    max-width: calc(100% - 2rem);
+  .ai-assistant-container {
+    bottom: 0;
+    right: 0;
   }
 
-  .enroll-modal-content h3,
-  .live-chat-header h3 {
-    font-size: 1.25rem;
-  }
-
-  .form-group {
-    margin-bottom: 0.875rem;
-  }
-
-  .form-group label {
-    font-size: 0.8rem;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  /* AI Assistant */
   .ai-chat-button {
     bottom: 1rem;
     right: 1rem;
     width: 50px;
     height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .ai-assistant-container {
-    bottom: 1rem;
-    right: 1rem;
-  }
-
-  .ai-assistant {
-    max-width: calc(100vw - 2rem);
-    height: 70vh;
-    max-height: 500px;
-  }
-}
-
-/* ========== TABLET RESPONSIVE (768px - 1024px) ========== */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    display: none;
-  }
-
-  .hero h1 {
-    font-size: 2.125rem;
-  }
-
-  .hero-stats {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .industries-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .audience-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  section {
-    padding: 3rem 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-  }
-
-  .ai-assistant {
-    max-width: 380px;
-    height: 550px;
-  }
-}
-
-/* ========== LARGE DESKTOP (> 1024px) ========== */
-@media (min-width: 1025px) {
-  section {
-    padding: 4rem 2rem;
-  }
-
-  .hero {
-    padding: 4rem 2rem;
-  }
-
-  .cta-section {
-    padding: 4rem 2rem;
   }
 }
