@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const LOGO_URL = "/renzy-logo.png";
+const LOGO_URL = "/renzy-logo.svg";
 const PHONE = "+234 901 069 2401";
 const PHONE_RAW = "+2349010692401";
 const EMAIL = "info@renzyacademy.com";
