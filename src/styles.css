@@ -77,7 +77,7 @@ nav {
   color: var(--r-primary);
 }
 
-.logo-text em {
+.logo-dot {
   color: var(--r-accent);
   font-style: normal;
 }
@@ -757,7 +757,7 @@ footer p {
   min-height: 80px;
 }
 
-/* ========== AI ASSISTANT ========== */
+/* ========== AI Assistant ========== */
 .ai-chat-button {
   position: fixed;
   bottom: 2rem;
