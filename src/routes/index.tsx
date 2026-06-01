@@ -204,9 +204,6 @@ function Index() {
         </div>
       </section>
 
-      <section id="enroll" className="cta-section">
-      </section>
-
       <section className="testimonials-section">
         <div className="container">
           <div className="section-header">
@@ -255,7 +252,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="enroll-cta" className="cta-section">
+      <section id="enroll" className="cta-section">
         <div className="container">
           <div className="cta-content">
             <div className="urgency-badge">
