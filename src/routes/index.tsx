@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logoMark from "@/assets/renzy-logo-mark.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,14 +12,16 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const LOGO_URL = "/renzy-logo-mark.jpg";
+
 function Index() {
   return (
     <div className="renzy">
       <nav>
         <div className="nav-container">
           <a href="#" className="logo-img">
-            <img src={logoMark.url} alt="Renzy Academy logo" />
-            <span className="logo-text">RENZY<em>.</em>ACADEMY</span>
+            <img src={LOGO_URL} alt="Renzy Academy logo" />
+            <span className="logo-text">RENZY<<em>.</em>ACADEMY</span>
           </a>
           <a href="#enroll" className="nav-cta">Enroll Now</a>
         </div>
@@ -272,8 +273,8 @@ function Index() {
       <footer>
         <div className="container">
           <a href="#" className="logo-img" style={{ justifyContent: "center", marginBottom: "1rem" }}>
-            <img src={logoMark.url} alt="Renzy Academy" />
-            <span className="logo-text" style={{ color: "white" }}>RENZY<em>.</em>ACADEMY</span>
+            <img src={LOGO_URL} alt="Renzy Academy" />
+            <span className="logo-text" style={{ color: "white" }}>RENZY<<em>.</em>ACADEMY</span>
           </a>
           <p>Preparing Agile professionals for global excellence. © 2026 Renzy Academy. All rights reserved.</p>
         </div>
