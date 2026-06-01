@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import logoMark from "@/assets/renzy-logo-mark.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,7 +18,10 @@ function Index() {
     <div className="renzy">
       <nav>
         <div className="nav-container">
-          <a href="#" className="logo">Renzy<span>.</span>Academy</a>
+          <a href="#" className="logo-img">
+            <img src={logoMark.url} alt="Renzy Academy logo" />
+            <span className="logo-text">RENZY<em>.</em>ACADEMY</span>
+          </a>
           <a href="#enroll" className="nav-cta">Enroll Now</a>
         </div>
       </nav>
@@ -200,6 +204,54 @@ function Index() {
         </div>
       </section>
 
+      <section className="testimonials-section">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-label">Student Stories</span>
+            <h2 className="section-title">Hear From Our Agile Community</h2>
+            <p className="section-subtitle">Real words from professionals who trained with Renzy Academy and transformed their understanding of Agile.</p>
+          </div>
+          <div className="testimonials-grid">
+            {[
+              {
+                text: "I am reviewing my note now. I don't know what I was reading before I came to Renzy Academy. The Agile concept makes a lot of sense to me now. Thank you Ma for teaching me Agile.",
+                name: "Raul",
+                role: "PMP Exam Prep Cohort",
+                initial: "R",
+                stars: 5,
+              },
+              {
+                text: "Thank you for your patience in helping me break down concepts, for staying on a point until you are sure that I have actually understood it. I am truly grateful.",
+                name: "Aunty Esther",
+                role: "Agile Course Graduate",
+                initial: "E",
+                stars: 5,
+              },
+              {
+                text: "My lecture is going on very well with Mr Tayo. He is amazing. Thank you to the entire Renzy Academy team for the support and guidance throughout my journey.",
+                name: "Cohort Member",
+                role: "PMI-ACP Trainee",
+                initial: "C",
+                stars: 5,
+              },
+            ].map((t) => (
+              <div key={t.name} className="testimonial-card">
+                <span className="quote-mark">"</span>
+                <div className="testimonial-stars">{"★".repeat(t.stars)}</div>
+                <p className="testimonial-text">{t.text}</p>
+                <div className="testimonial-author">
+                  <div className="testimonial-avatar">{t.initial}</div>
+                  <div>
+                    <div className="testimonial-name">{t.name}</div>
+                    <div className="testimonial-role">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="enroll" className="cta-section">
         <div className="container">
           <div className="cta-content">
@@ -219,7 +271,10 @@ function Index() {
 
       <footer>
         <div className="container">
-          <a href="#" className="logo">Renzy<span>.</span>Academy</a>
+          <a href="#" className="logo-img" style={{ justifyContent: "center", marginBottom: "1rem" }}>
+            <img src={logoMark.url} alt="Renzy Academy" />
+            <span className="logo-text" style={{ color: "white" }}>RENZY<em>.</em>ACADEMY</span>
+          </a>
           <p>Preparing Agile professionals for global excellence. © 2026 Renzy Academy. All rights reserved.</p>
         </div>
       </footer>
