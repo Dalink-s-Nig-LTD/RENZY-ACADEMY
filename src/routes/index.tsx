@@ -44,13 +44,13 @@ const FAQ_DATABASE = [
     id: 1,
     question: "What is PMI-ACP certification?",
     keywords: ["pmi-acp", "certification", "what is"],
-    answer: "PMI-ACP (Agile Certified Practitioner) is a certification offered by the Project Management Institute that validates your ability to work in Agile environments. It covers Scrum, Kanban, Lean, XP, and Hybrid Agile methodologies."
+    answer: "PMI-ACP (Agile Certified Practitioner) is a certification offered by the Project Management Institute that validates your ability to work in Agile environments. It covers Scrum, Kanba[...]
   },
   {
     id: 2,
     question: "What are the prerequisites for the PMI-ACP exam?",
     keywords: ["prerequisite", "requirement", "eligibility", "exam"],
-    answer: "To be eligible for the PMI-ACP exam, you need:\n• 2,000 hours of general project experience (last 5 years)\n• 1,500 hours on Agile project teams (last 3 years)\n• 21 contact hours of Agile training"
+    answer: "To be eligible for the PMI-ACP exam, you need:\n• 2,000 hours of general project experience (last 5 years)\n• 1,500 hours on Agile project teams (last 3 years)\n• 21 contact hou[...]
   },
   {
     id: 3,
@@ -203,7 +203,13 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
       <div className="ai-assistant">
         <div className="ai-header">
           <div className="ai-header-content">
-            <div className="ai-icon">🤖</div>
+            <div className="ai-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+                <path d="M12 14c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </div>
             <div>
               <h3>Renzy AI Assistant</h3>
               <p>Instant answers to your questions</p>
@@ -417,8 +423,13 @@ function Index() {
           onClick={() => setShowAI(true)}
           className="ai-chat-button"
           title="Open AI Assistant"
+          aria-label="Open AI Assistant"
         >
-          🤖
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+            <path d="M12 14c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z" />
+            <circle cx="12" cy="12" r="10" />
+          </svg>
         </button>
       )}
 
