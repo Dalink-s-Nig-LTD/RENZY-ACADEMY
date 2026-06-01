@@ -1,0 +1,14 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Red R shape -->
+  <path d="M 80 80 L 80 200 L 120 200 L 120 140 L 160 140 Q 180 140 180 120 Q 180 100 160 100 L 120 100 L 120 80 Z" fill="#E31E24" stroke="none"/>
+  
+  <!-- Blue circular arrow/swoosh -->
+  <path d="M 200 80 Q 260 80 280 120 Q 300 160 280 200 Q 260 220 220 220" 
+        fill="none" stroke="#003366" stroke-width="35" stroke-linecap="round"/>
+  
+  <!-- Text: RENZY -->
+  <text x="80" y="260" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#003366">RENZY</text>
+  
+  <!-- Text: ACADEMY -->
+  <text x="80" y="285" font-family="Arial, sans-serif" font-size="24" fill="#003366">ACADEMY</text>
+</svg>
