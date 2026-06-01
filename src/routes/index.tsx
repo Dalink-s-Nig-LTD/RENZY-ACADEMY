@@ -13,19 +13,19 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const LOGO_URL = "/renzy-logo.svg";
+const LOGO_URL = "/renzy-logo-mark.jpg";
 const PHONE = "+234 901 069 2401";
 const PHONE_RAW = "+2349010692401";
 const EMAIL = "info@renzyacademy.com";
 const WHATSAPP_LINK = "https://wa.me/2349010692401";
 
 const BENEFITS = [
-  ["⚡", "Deliver Projects Faster", "Master Agile methodologies that accelerate delivery cycles."],
-  ["🔄", "Respond to Business Changes", "Develop adaptability to pivot when market conditions shift."],
-  ["🤝", "Improve Team Collaboration", "Lead cross-functional teams with transparency and accountability."],
-  ["⭐", "Increase Customer Satisfaction", "Put customer value at the center of every sprint."],
-  ["🚀", "Lead Agile Transformation", "Champion Agile practices at scale across departments."],
-  ["🌐", "Thrive in Digital Environments", "Excel in modern, remote-first workplaces."],
+  ["Deliver Projects Faster", "Master Agile methodologies that accelerate delivery cycles."],
+  ["Respond to Business Changes", "Develop adaptability to pivot when market conditions shift."],
+  ["Improve Team Collaboration", "Lead cross-functional teams with transparency and accountability."],
+  ["Increase Customer Satisfaction", "Put customer value at the center of every sprint."],
+  ["Lead Agile Transformation", "Champion Agile practices at scale across departments."],
+  ["Thrive in Digital Environments", "Excel in modern, remote-first workplaces."],
 ];
 
 const INDUSTRIES = ["Technology", "Banking & Finance", "Telecommunications", "Healthcare", "Oil & Gas", "Consulting", "Manufacturing", "Startups"];
@@ -33,95 +33,85 @@ const INDUSTRIES = ["Technology", "Banking & Finance", "Telecommunications", "He
 const AUDIENCE = ["Project Managers", "Business Analysts", "Product Managers", "Scrum Masters", "Team Leads", "Software Professionals", "Operations", "Career Transitioners"];
 
 const TESTIMONIALS = [
-  { text: "I don't know what I was reading before I came to Renzy Academy. The Agile concept makes a lot of sense to me now.", name: "Raul", role: "PMP Exam Prep" },
+  { text: "I do not know what I was reading before I came to Renzy Academy. The Agile concept makes a lot of sense to me now.", name: "Raul", role: "PMP Exam Prep" },
   { text: "Thank you for your patience in helping me break down concepts until I actually understood them. I am truly grateful.", name: "Aunty Esther", role: "Agile Graduate" },
   { text: "My lecture is going very well with Mr Tayo. Thank you to the entire Renzy Academy team for the support.", name: "Cohort Member", role: "PMI-ACP Trainee" },
 ];
 
-// FAQ Knowledge Base
 const FAQ_DATABASE = [
   {
     id: 1,
     question: "What is PMI-ACP certification?",
     keywords: ["pmi-acp", "certification", "what is"],
-    answer: "PMI-ACP (Agile Certified Practitioner) is a certification offered by the Project Management Institute that validates your ability to work in Agile environments. It covers Scrum, Kanba[...]
+    answer: "PMI-ACP (Agile Certified Practitioner) is a certification offered by the Project Management Institute that validates your ability to work in Agile environments. It covers Scrum, Kanban, Lean, XP, Hybrid Agile, and Iterative Development.",
   },
   {
     id: 2,
     question: "What are the prerequisites for the PMI-ACP exam?",
     keywords: ["prerequisite", "requirement", "eligibility", "exam"],
-    answer: "To be eligible for the PMI-ACP exam, you need:\n• 2,000 hours of general project experience (last 5 years)\n• 1,500 hours on Agile project teams (last 3 years)\n• 21 contact hou[...]
+    answer: "To be eligible for the PMI-ACP exam, you need: 2,000 hours of general project experience (last 5 years), 1,500 hours on Agile project teams (last 3 years), and 21 contact hours of Agile training.",
   },
   {
     id: 3,
     question: "How long is the training course?",
     keywords: ["duration", "course length", "how long", "training"],
-    answer: "Our PMI-ACP training course is typically 40 hours of instruction, spread over 4-6 weeks depending on the cohort. This includes live sessions, practice exams, and Q&A sessions."
+    answer: "Our PMI-ACP training course is typically 40 hours of instruction, spread over 4-6 weeks depending on the cohort. This includes live sessions, practice exams, and Q&A sessions.",
   },
   {
     id: 4,
     question: "What frameworks does the course cover?",
     keywords: ["framework", "scrum", "kanban", "lean", "xp"],
-    answer: "The course covers 6 Agile frameworks:\n• Scrum\n• Kanban\n• Lean\n• Extreme Programming (XP)\n• Hybrid Agile\n• Iterative and Incremental Development"
+    answer: "The course covers 6 Agile frameworks: Scrum, Kanban, Lean, Extreme Programming (XP), Hybrid Agile, and Iterative and Incremental Development.",
   },
   {
     id: 5,
     question: "Is there a money-back guarantee?",
     keywords: ["refund", "guarantee", "money back"],
-    answer: "Yes, we offer a 14-day money-back guarantee if you're not satisfied with the course quality. Contact our support team for details."
+    answer: "Yes, we offer a 14-day money-back guarantee if you are not satisfied with the course quality. Contact our support team for details.",
   },
   {
     id: 6,
     question: "When is the next cohort starting?",
     keywords: ["cohort", "start date", "when", "next batch"],
-    answer: "Cohorts start monthly. For the exact dates of upcoming cohorts, please contact us via WhatsApp, email, or fill the enrollment form with your preferred timeline."
+    answer: "Cohorts start monthly. For the exact dates of upcoming cohorts, please contact us via WhatsApp, email, or fill the enrollment form with your preferred timeline.",
   },
   {
     id: 7,
     question: "How much does the training cost?",
     keywords: ["price", "cost", "fee", "pricing"],
-    answer: "Pricing varies based on the package and delivery format. For detailed pricing information, please reach out to our team at info@renzyacademy.com or WhatsApp: +2349010692401"
+    answer: "Pricing varies based on the package and delivery format. For detailed pricing information, please reach out to our team at info@renzyacademy.com or WhatsApp: +2349010692401",
   },
   {
     id: 8,
-    question: "Can I get a refund if I can't complete the course?",
+    question: "Can I get a refund if I cannot complete the course?",
     keywords: ["refund", "withdrawal", "cancel"],
-    answer: "Refund policies depend on when you withdraw from the course. We offer pro-rated refunds for early withdrawals. Contact our team for specific details."
+    answer: "Refund policies depend on when you withdraw from the course. We offer pro-rated refunds for early withdrawals. Contact our team for specific details.",
   },
   {
     id: 9,
     question: "Do you provide study materials?",
     keywords: ["materials", "resources", "study", "books"],
-    answer: "Yes! All participants receive comprehensive study materials including:\n• Digital course notes\n• Practice exams\n• Video recordings of all sessions\n• Reference guides"
+    answer: "Yes! All participants receive comprehensive study materials including: Digital course notes, Practice exams, Video recordings of all sessions, and Reference guides.",
   },
   {
     id: 10,
     question: "Is the certification globally recognized?",
     keywords: ["global", "recognition", "international", "valid"],
-    answer: "Yes, PMI-ACP is globally recognized and valued by employers worldwide. It's respected across technology, finance, healthcare, and other industries."
+    answer: "Yes, PMI-ACP is globally recognized and valued by employers worldwide. It is respected across technology, finance, healthcare, and other industries.",
   },
 ];
 
-// Simple AI matching function
-function findRelevantFAQ(query: string): typeof FAQ_DATABASE[0] | null {
+function findRelevantFAQ(query: string) {
   const lowerQuery = query.toLowerCase();
-  
   for (const faq of FAQ_DATABASE) {
     for (const keyword of faq.keywords) {
-      if (lowerQuery.includes(keyword)) {
-        return faq;
-      }
+      if (lowerQuery.includes(keyword)) return faq;
     }
   }
-  
-  // If no exact match, look for partial matches
   for (const faq of FAQ_DATABASE) {
     const questionLower = faq.question.toLowerCase();
-    if (lowerQuery.split(" ").some(word => questionLower.includes(word))) {
-      return faq;
-    }
+    if (lowerQuery.split(" ").some((word) => questionLower.includes(word))) return faq;
   }
-  
   return null;
 }
 
@@ -137,7 +127,7 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "1",
-      text: "Hi! 👋 I'm Renzy's AI Assistant. I can answer common questions about PMI-ACP training, pricing, prerequisites, and more. What would you like to know?",
+      text: "Hi! I am Renzy's AI Assistant. I can answer common questions about PMI-ACP training, pricing, prerequisites, and more. What would you like to know?",
       sender: "assistant",
       timestamp: new Date(),
     },
@@ -158,7 +148,6 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
       text: input,
@@ -170,10 +159,8 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
     setInput("");
     setIsLoading(true);
 
-    // Simulate AI processing delay
     setTimeout(() => {
       const relevantFAQ = findRelevantFAQ(input);
-
       let assistantResponse: ChatMessage;
 
       if (relevantFAQ) {
@@ -187,7 +174,7 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
       } else {
         assistantResponse = {
           id: (Date.now() + 1).toString(),
-          text: "I'm not sure about that specific question. Would you like to connect with our live support team for a more detailed answer? They're available to help!",
+          text: "I am not sure about that specific question. Would you like to connect with our live support team for a more detailed answer? They are available to help!",
           sender: "assistant",
           timestamp: new Date(),
         };
@@ -220,9 +207,7 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
         <div className="ai-messages">
           {messages.map((msg) => (
             <div key={msg.id} className={`ai-message ${msg.sender}`}>
-              <div className="message-bubble">
-                {msg.text}
-              </div>
+              <div className="message-bubble">{msg.text}</div>
             </div>
           ))}
           {isLoading && (
@@ -253,9 +238,9 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
 
         <div className="ai-footer">
           <button onClick={onConnectToLiveChat} className="ai-live-chat-btn">
-            💬 Connect to Live Support
+            Connect to Live Support
           </button>
-          <p className="ai-footer-text">Can't find what you need? Our team is ready to help!</p>
+          <p className="ai-footer-text">Cannot find what you need? Our team is ready to help!</p>
         </div>
       </div>
     </div>
@@ -292,39 +277,22 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
       <div className="live-chat-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>×</button>
         <div className="live-chat-header">
-          <h3>💬 Live Support</h3>
+          <h3>Live Support</h3>
           <p>Connect with our team</p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Your Name *</label>
-            <input
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
-            />
+            <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
           </div>
           <div className="form-group">
             <label>Email *</label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-            />
+            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" />
           </div>
           <div className="form-group">
             <label>Message *</label>
-            <textarea
-              required
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Describe your question or concern..."
-              rows={4}
-            />
+            <textarea required value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe your question or concern..." rows={4} />
           </div>
           <button type="submit" className="btn-primary" style={{ width: "100%" }}>
             Send to Support Team
@@ -335,7 +303,7 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
           <p style={{ fontSize: "0.85rem", color: "var(--r-text-light)" }}>
             Or reach us directly:<br />
             <a href={`tel:${PHONE_RAW}`} style={{ color: "var(--r-accent)" }}>{PHONE}</a><br />
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ color: "var(--r-accent)" }}>💬 WhatsApp</a>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ color: "var(--r-accent)" }}>WhatsApp</a>
           </p>
         </div>
       </div>
@@ -417,7 +385,6 @@ function Index() {
       {showAI && <AIAssistant onConnectToLiveChat={() => { setShowAI(false); setShowLiveChat(true); }} />}
       {showLiveChat && <LiveChatWidget onClose={() => setShowLiveChat(false)} />}
 
-      {/* AI Chat Button */}
       {!showAI && (
         <button 
           onClick={() => setShowAI(true)}
@@ -437,7 +404,7 @@ function Index() {
         <div className="nav-container">
           <a href="/" className="logo-img">
             <img src={LOGO_URL} alt="Renzy Academy" />
-            <span className="logo-text">RENZY<<em>.</em>ACADEMY</span>
+            <span className="logo-text">RENZY<span className="logo-dot">.</span>ACADEMY</span>
           </a>
           <button onClick={() => setShowForm(true)} className="nav-cta">Enroll Now</button>
         </div>
@@ -491,12 +458,11 @@ function Index() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">Why PMI-ACP</span>
-            <h2 className="section-title">Why Professionals Are Pursuing PMI-ACP®</h2>
+            <h2 className="section-title">Why Professionals Are Pursuing PMI-ACP</h2>
           </div>
           <div className="benefits-grid">
-            {BENEFITS.map(([icon, title, desc]) => (
+            {BENEFITS.map(([title, desc]) => (
               <div key={title} className="benefit-card">
-                <div className="benefit-icon">{icon}</div>
                 <h3>{title}</h3>
                 <p>{desc}</p>
               </div>
@@ -568,7 +534,7 @@ function Index() {
             <p>Do not wait until the market moves ahead without you.</p>
             <div className="cta-buttons">
               <button onClick={() => setShowForm(true)} className="btn-white">Enroll Now</button>
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">💬 WhatsApp Us</a>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">WhatsApp Us</a>
             </div>
             <div className="contact-bar">
               <a href={`tel:${PHONE_RAW}`}>📞 {PHONE}</a>
@@ -583,7 +549,7 @@ function Index() {
         <div className="container">
           <a href="/" className="logo-img" style={{ justifyContent: "center", marginBottom: "1rem" }}>
             <img src={LOGO_URL} alt="Renzy Academy" />
-            <span className="logo-text" style={{ color: "white" }}>RENZY<<em>.</em>ACADEMY</span>
+            <span className="logo-text" style={{ color: "white" }}>RENZY<span style={{ color: "#E31B23" }}>.</span>ACADEMY</span>
           </a>
           <div className="footer-contact">
             <a href={`tel:${PHONE_RAW}`}>{PHONE}</a>
