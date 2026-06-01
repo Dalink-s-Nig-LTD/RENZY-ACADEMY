@@ -1,460 +1,177 @@
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+/* ========== Enrollment Modal ========== */
+.enroll-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+.enroll-modal-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  animation: slideUp 0.3s ease;
 }
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--r-text-light);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
-}
-
-/* ========== Renzy Academy PMI-ACP Landing ========== */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-
-.renzy {
-  --r-primary: #14279B;
-  --r-accent: #E31B23;
-  --r-accent-light: #ff4d54;
-  --r-accent-dark: #b8141b;
-  --r-blue: #14279B;
-  --r-blue-dark: #0b1768;
-  --r-success: #10b981;
-  --r-text: #1e293b;
-  --r-text-light: #64748b;
-  --r-bg: #ffffff;
-  --r-bg-alt: #f8fafc;
-  --r-bg-dark: #0b1768;
-  --r-border: #e2e8f0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+.modal-close:hover {
+  background: var(--r-bg-alt);
   color: var(--r-text);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-.renzy * { box-sizing: border-box; }
-
-.renzy nav {
-  position: fixed; top: 0; width: 100%;
-  background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-  z-index: 1000; border-bottom: 1px solid var(--r-border); padding: 1rem 0;
-}
-.renzy .nav-container {
-  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.renzy .logo { font-size: 1.5rem; font-weight: 800; color: var(--r-primary); text-decoration: none; }
-.renzy .logo span { color: var(--r-accent); }
-.renzy .logo-img { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-.renzy .logo-img img { height: 40px; width: auto; display: block; }
-.renzy .logo-img .logo-text { font-size: 1.25rem; font-weight: 800; color: var(--r-primary); letter-spacing: -0.01em; }
-.renzy .logo-img .logo-text em { color: var(--r-accent); font-style: normal; }
-
-/* Testimonials */
-.renzy .testimonials-section { background: var(--r-bg-alt); }
-.renzy .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-.renzy .testimonial-card {
-  background: white; border-radius: 20px; padding: 2.25rem;
-  border: 1px solid var(--r-border); position: relative;
-  box-shadow: 0 4px 24px rgba(20,39,155,0.05);
-  transition: all 0.3s ease;
-}
-.renzy .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(20,39,155,0.10); }
-.renzy .testimonial-card .quote-mark {
-  position: absolute; top: 1rem; right: 1.5rem; font-size: 4rem;
-  font-family: Georgia, serif; line-height: 1; color: var(--r-accent); opacity: 0.15;
-}
-.renzy .testimonial-text { color: var(--r-text); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem; }
-.renzy .testimonial-author { display: flex; align-items: center; gap: 0.9rem; }
-.renzy .testimonial-avatar {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--r-blue), var(--r-accent));
-  color: white; display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 1.1rem;
-}
-.renzy .testimonial-name { font-weight: 700; color: var(--r-primary); font-size: 0.95rem; }
-.renzy .testimonial-role { font-size: 0.82rem; color: var(--r-text-light); }
-.renzy .testimonial-stars { color: #f59e0b; margin-bottom: 0.75rem; letter-spacing: 2px; }
-.renzy .nav-cta {
-  background: var(--r-accent); color: white; padding: 0.6rem 1.5rem;
-  border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-.renzy .nav-cta:hover {
-  background: var(--r-accent-dark); transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59,130,246,0.3);
 }
 
-.renzy .hero {
-  min-height: 100vh; display: flex; align-items: center;
-  background: linear-gradient(135deg, var(--r-bg-dark) 0%, #1e293b 100%);
-  position: relative; overflow: hidden; padding-top: 80px;
+.form-group {
+  margin-bottom: 1rem;
 }
-.renzy .hero::before {
-  content: ''; position: absolute; top: -50%; right: -20%;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-  animation: renzy-pulse 4s ease-in-out infinite;
-}
-.renzy .hero::after {
-  content: ''; position: absolute; bottom: -30%; left: -10%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
-  animation: renzy-pulse 5s ease-in-out infinite reverse;
-}
-@keyframes renzy-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 0.8; }
-}
-.renzy .hero-container {
-  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-  align-items: center; position: relative; z-index: 1;
-}
-.renzy .hero-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: rgba(59,130,246,0.2); color: var(--r-accent-light);
-  padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;
-  font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.3);
-}
-.renzy .hero-badge .dot {
-  width: 8px; height: 8px; background: var(--r-success);
-  border-radius: 50%; animation: renzy-blink 2s infinite;
-}
-@keyframes renzy-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-.renzy .hero h1 {
-  font-size: 3.5rem; font-weight: 900; color: white;
-  line-height: 1.1; margin-bottom: 1.5rem;
-}
-.renzy .hero h1 .highlight {
-  background: linear-gradient(135deg, var(--r-accent), var(--r-accent-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.renzy .hero-subtitle { font-size: 1.2rem; color: #94a3b8; margin-bottom: 2rem; line-height: 1.7; }
-.renzy .hero-stats { display: flex; gap: 2rem; margin-bottom: 2.5rem; }
-.renzy .stat { text-align: center; }
-.renzy .stat-number { font-size: 2rem; font-weight: 800; color: white; display: block; }
-.renzy .stat-label { font-size: 0.85rem; color: #94a3b8; }
-.renzy .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-.renzy .btn-primary {
-  background: linear-gradient(135deg, var(--r-accent), var(--r-accent-dark));
-  color: white; padding: 1rem 2.5rem; border-radius: 50px;
-  text-decoration: none; font-weight: 700; font-size: 1rem; border: none;
-  cursor: pointer; transition: all 0.3s ease;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  box-shadow: 0 10px 40px rgba(59,130,246,0.3);
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--r-primary);
 }
-.renzy .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(59,130,246,0.4); }
-.renzy .btn-secondary {
-  background: transparent; color: white; padding: 1rem 2.5rem;
-  border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem;
-  border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s ease;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-}
-.renzy .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.05); }
 
-.renzy .hero-visual { position: relative; }
-.renzy .hero-card {
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1); border-radius: 24px;
-  padding: 2.5rem; position: relative; overflow: hidden;
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--r-border);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  outline: none;
+  font-family: inherit;
+  color: var(--r-text);
+  transition: border-color 0.2s;
 }
-.renzy .hero-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--r-accent), var(--r-blue));
-}
-.renzy .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-.renzy .card-icon {
-  width: 60px; height: 60px;
-  background: linear-gradient(135deg, var(--r-accent), var(--r-accent-dark));
-  border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
-}
-.renzy .card-title { color: white; font-size: 1.3rem; font-weight: 700; }
-.renzy .card-subtitle { color: #94a3b8; font-size: 0.9rem; }
-.renzy .card-desc { color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.25rem; }
-.renzy .frameworks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-.renzy .framework-tag {
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px; padding: 0.8rem 1rem; color: #e2e8f0;
-  font-size: 0.9rem; font-weight: 500;
-  display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;
-}
-.renzy .framework-tag:hover {
-  background: rgba(59,130,246,0.2); border-color: var(--r-accent); transform: translateX(5px);
-}
-.renzy .framework-tag .check { color: var(--r-success); font-weight: 700; }
 
-.renzy section { padding: 6rem 0; }
-.renzy .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-.renzy .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
-.renzy .section-label {
-  display: inline-block; background: rgba(59,130,246,0.1); color: var(--r-accent);
-  padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
-  margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--r-accent);
+  box-shadow: 0 0 0 3px rgba(227,27,35,0.1);
 }
-.renzy .section-title { font-size: 2.5rem; font-weight: 800; color: var(--r-primary); margin-bottom: 1rem; line-height: 1.2; }
-.renzy .section-subtitle { font-size: 1.1rem; color: var(--r-text-light); line-height: 1.7; }
 
-.renzy .why-section { background: var(--r-bg-alt); }
-.renzy .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.renzy .benefit-card {
-  background: white; border-radius: 20px; padding: 2.5rem;
-  border: 1px solid var(--r-border); transition: all 0.4s ease;
-  position: relative; overflow: hidden;
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
 }
-.renzy .benefit-card::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-  background: linear-gradient(90deg, var(--r-accent), var(--r-blue));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-}
-.renzy .benefit-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); border-color: transparent; }
-.renzy .benefit-card:hover::before { transform: scaleX(1); }
-.renzy .benefit-icon {
-  width: 56px; height: 56px;
-  background: linear-gradient(135deg, rgba(227,27,35,0.10), rgba(20,39,155,0.10));
-  border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 1.5rem;
-}
-.renzy .benefit-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--r-primary); margin-bottom: 0.8rem; }
-.renzy .benefit-card p { color: var(--r-text-light); font-size: 0.95rem; line-height: 1.6; }
 
-.renzy .industries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.renzy .industry-card {
-  background: white; border: 1px solid var(--r-border); border-radius: 16px;
-  padding: 1.8rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;
+/* Contact bar in CTA */
+.contact-bar {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
 }
-.renzy .industry-card:hover { border-color: var(--r-accent); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-.renzy .industry-icon {
-  width: 48px; height: 48px;
-  background: linear-gradient(135deg, var(--r-accent), var(--r-accent-dark));
-  border-radius: 12px; display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; color: white; flex-shrink: 0;
-}
-.renzy .industry-name { font-weight: 600; color: var(--r-primary); font-size: 1rem; }
 
-.renzy .audience-section {
-  background: linear-gradient(135deg, var(--r-bg-dark) 0%, #1e293b 100%);
+.contact-bar a {
   color: white;
+  text-decoration: none;
+  font-weight: 500;
 }
-.renzy .audience-section .section-title { color: white; }
-.renzy .audience-section .section-subtitle { color: #94a3b8; }
-.renzy .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+
+.contact-bar a:hover {
+  text-decoration: underline;
+}
+
+.contact-bar span {
+  color: rgba(255,255,255,0.5);
+}
+
+/* Footer contact */
+.footer-contact {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-contact a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.footer-contact a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Simplified industry cards for MVP */
+.renzy .industry-card {
+  background: white;
+  border: 1px solid var(--r-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--r-primary);
+  transition: all 0.3s ease;
+}
+
+.renzy .industry-card:hover {
+  border-color: var(--r-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Simplified audience cards */
 .renzy .audience-card {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px; padding: 1.8rem; text-align: center; transition: all 0.3s ease;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: 600;
 }
-.renzy .audience-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-5px); border-color: var(--r-accent); }
-.renzy .audience-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-.renzy .audience-card h4 { font-size: 1rem; font-weight: 600; color: white; }
 
-.renzy .training-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.renzy .training-card {
-  display: flex; gap: 1.2rem; padding: 1.5rem; background: white;
-  border-radius: 16px; border: 1px solid var(--r-border); transition: all 0.3s ease;
-}
-.renzy .training-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.06); transform: translateY(-3px); }
-.renzy .training-number {
-  width: 40px; height: 40px;
-  background: linear-gradient(135deg, var(--r-accent), var(--r-accent-dark));
-  color: white; border-radius: 10px; display: flex; align-items: center;
-  justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0;
-}
-.renzy .training-content h4 { font-size: 1.1rem; font-weight: 700; color: var(--r-primary); margin-bottom: 0.5rem; }
-.renzy .training-content p { color: var(--r-text-light); font-size: 0.9rem; line-height: 1.5; }
-
-.renzy .cta-section {
-  background: linear-gradient(135deg, var(--r-accent-dark) 0%, var(--r-accent) 100%);
-  position: relative; overflow: hidden; padding: 5rem 0;
-}
-.renzy .cta-section::before {
-  content: ''; position: absolute; top: -50%; right: -20%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-}
-.renzy .cta-section::after {
-  content: ''; position: absolute; bottom: -50%; left: -20%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-}
-.renzy .cta-content { text-align: center; position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-.renzy .cta-section h2 { font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 1rem; }
-.renzy .cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
-.renzy .urgency-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.2rem;
-  border-radius: 50px; font-size: 0.9rem; font-weight: 600;
-  margin-bottom: 2rem; backdrop-filter: blur(10px);
-}
-.renzy .urgency-badge .fire { animation: renzy-bounce 1s infinite; }
-@keyframes renzy-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-.renzy .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.renzy .btn-white {
-  background: white; color: var(--r-accent-dark); padding: 1rem 2.5rem;
-  border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem;
-  transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-}
-.renzy .btn-white:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.renzy .btn-outline-white {
-  background: transparent; color: white; padding: 1rem 2.5rem;
-  border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem;
-  border: 2px solid rgba(255,255,255,0.5); transition: all 0.3s ease;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-}
-.renzy .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
-
-.renzy footer {
-  background: var(--r-bg-dark); color: #94a3b8; padding: 3rem 0; text-align: center;
-}
-.renzy footer .logo { color: white; margin-bottom: 1rem; display: inline-block; }
-.renzy footer p { font-size: 0.9rem; }
-
-@media (max-width: 968px) {
-  .renzy .hero-container { grid-template-columns: 1fr; text-align: center; }
-  .renzy .hero h1 { font-size: 2.5rem; }
-  .renzy .hero-stats { justify-content: center; }
-  .renzy .hero-cta-group { justify-content: center; }
-  .renzy .hero-visual { order: -1; }
-  .renzy .section-title { font-size: 2rem; }
-  .renzy .cta-section h2 { font-size: 2rem; }
-}
-@media (max-width: 640px) {
-  .renzy .hero h1 { font-size: 2rem; }
-  .renzy .hero-stats { flex-direction: column; gap: 1rem; }
-  .renzy .frameworks-grid { grid-template-columns: 1fr; }
-  .renzy .section-title { font-size: 1.7rem; }
+.renzy .audience-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-5px);
+  border-color: var(--r-accent);
 }
