@@ -94,7 +94,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "icon",
         type: "image/jpeg",
-        href: "/__l5e/assets-v1/b99e9147-42f7-4c83-b799-9063db37f736/renzy-logo-mark.jpg",
+        href: "/renzy-logo-mark.jpg",
+      },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/renzy-logo-mark.jpg",
       },
     ],
   }),
@@ -123,7 +128,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
