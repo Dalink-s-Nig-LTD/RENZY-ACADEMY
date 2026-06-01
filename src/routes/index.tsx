@@ -1,32 +1,125 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "PMI-ACP Certification Training | Renzy Academy" },
-      { name: "description", content: "Become PMI-ACP certified with Renzy Academy. Master Scrum, Kanban, Lean, XP and Hybrid Agile to lead modern teams and unlock global career opportunities." },
+      { name: "description", content: "Become PMI-ACP certified with Renzy Academy. Master Scrum, Kanban, Lean, XP and Hybrid Agile." },
       { property: "og:title", content: "PMI-ACP Certification Training | Renzy Academy" },
-      { property: "og:description", content: "Become PMI-ACP certified with Renzy Academy. Master Scrum, Kanban, Lean, XP and Hybrid Agile to lead modern teams and unlock global career opportunities." },
+      { property: "og:description", content: "Become PMI-ACP certified with Renzy Academy." },
     ],
   }),
   component: Index,
 });
 
 const LOGO_URL = "/renzy-logo-mark.jpg";
+const PHONE = "+234 901 069 2401";
+const EMAIL = "info@renzyacademy.com";
+const WHATSAPP_LINK = "https://wa.me/2349010692401";
+
+const BENEFITS = [
+  ["⚡", "Deliver Projects Faster", "Master Agile methodologies that accelerate delivery cycles."],
+  ["🔄", "Respond to Business Changes", "Develop adaptability to pivot when market conditions shift."],
+  ["🤝", "Improve Team Collaboration", "Lead cross-functional teams with transparency and accountability."],
+  ["⭐", "Increase Customer Satisfaction", "Put customer value at the center of every sprint."],
+  ["🚀", "Lead Agile Transformation", "Champion Agile practices at scale across departments."],
+  ["🌐", "Thrive in Digital Environments", "Excel in modern, remote-first workplaces."],
+];
+
+const INDUSTRIES = ["Technology", "Banking & Finance", "Telecommunications", "Healthcare", "Oil & Gas", "Consulting", "Manufacturing", "Startups"];
+
+const AUDIENCE = ["Project Managers", "Business Analysts", "Product Managers", "Scrum Masters", "Team Leads", "Software Professionals", "Operations", "Career Transitioners"];
+
+const TESTIMONIALS = [
+  { text: "I don't know what I was reading before I came to Renzy Academy. The Agile concept makes a lot of sense to me now.", name: "Raul", role: "PMP Exam Prep" },
+  { text: "Thank you for your patience in helping me break down concepts until I actually understood them. I am truly grateful.", name: "Aunty Esther", role: "Agile Graduate" },
+  { text: "My lecture is going very well with Mr Tayo. Thank you to the entire Renzy Academy team for the support.", name: "Cohort Member", role: "PMI-ACP Trainee" },
+];
+
+function EnrollForm({ onClose }: { onClose: () => void }) {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", role: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // MVP: In production, send to your backend/API here
+    console.log("Enrollment:", form);
+    setSubmitted(true);
+    setTimeout(onClose, 3000);
+  };
+
+  if (submitted) {
+    return (
+      <div className="enroll-modal">
+        <div className="enroll-modal-content" style={{ textAlign: "center", padding: "3rem" }}>
+          <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>✅</div>
+          <h3>Application Received!</h3>
+          <p>We will contact you within 24 hours.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="enroll-modal" onClick={onClose}>
+      <div className="enroll-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>×</button>
+        <h3>Enroll in PMI-ACP Training</h3>
+        <p style={{ color: "var(--muted)", marginBottom: "1.5rem" }}>Fill this form and we will reach out to you shortly.</p>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Full Name *</label>
+            <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your full name" />
+          </div>
+          <div className="form-group">
+            <label>Email *</label>
+            <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
+          </div>
+          <div className="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+234 ..." />
+          </div>
+          <div className="form-group">
+            <label>Current Role</label>
+            <input value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} placeholder="e.g. Project Manager" />
+          </div>
+          <div className="form-group">
+            <label>Message (Optional)</label>
+            <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any questions or preferred cohort?" rows={3} />
+          </div>
+          <button type="submit" className="btn-primary" style={{ width: "100%" }}>Submit Application</button>
+        </form>
+
+        <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.875rem", color: "var(--muted)" }}>
+          Or reach us directly: <br />
+          <a href={`tel:${PHONE.replace(/\s/g, "")}`}>{PHONE}</a> · <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Index() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <div className="renzy">
+      {showForm && <EnrollForm onClose={() => setShowForm(false)} />}
+
+      {/* NAV */}
       <nav>
         <div className="nav-container">
-          <a href="#" className="logo-img">
-            <img src={LOGO_URL} alt="Renzy Academy logo" />
+          <a href="/" className="logo-img">
+            <img src={LOGO_URL} alt="Renzy Academy" />
             <span className="logo-text">RENZY<<em>.</em>ACADEMY</span>
           </a>
-          <a href="#enroll" className="nav-cta">Enroll Now</a>
+          <button onClick={() => setShowForm(true)} className="nav-cta">Enroll Now</button>
         </div>
       </nav>
 
+      {/* HERO */}
       <section className="hero">
         <div className="hero-container">
           <div>
@@ -39,24 +132,15 @@ function Index() {
               <span className="highlight">Global Career Advantage.</span>
             </h1>
             <p className="hero-subtitle">
-              The world of work is changing fast. Companies want professionals who can adapt quickly, manage change, lead agile teams, and deliver value faster in uncertain environments.
+              Companies want professionals who can adapt quickly, manage change, lead agile teams, and deliver value faster in uncertain environments.
             </p>
             <div className="hero-stats">
-              <div className="stat">
-                <span className="stat-number">21%</span>
-                <span className="stat-label">Higher Salary</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">6</span>
-                <span className="stat-label">Agile Frameworks</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">Global</span>
-                <span className="stat-label">Recognition</span>
-              </div>
+              <div className="stat"><span className="stat-number">21%</span><span className="stat-label">Higher Salary</span></div>
+              <div className="stat"><span className="stat-number">6</span><span className="stat-label">Agile Frameworks</span></div>
+              <div className="stat"><span className="stat-number">Global</span><span className="stat-label">Recognition</span></div>
             </div>
             <div className="hero-cta-group">
-              <a href="#enroll" className="btn-primary">Start Your Journey →</a>
+              <button onClick={() => setShowForm(true)} className="btn-primary">Start Your Journey →</button>
               <a href="#why" className="btn-secondary">Learn More</a>
             </div>
           </div>
@@ -71,7 +155,7 @@ function Index() {
               </div>
               <p className="card-desc">Validates your ability to work in Agile environments using:</p>
               <div className="frameworks-grid">
-                {["Scrum", "Kanban", "Lean", "XP", "Hybrid Agile", "Iterative & Incremental"].map((f) => (
+                {["Scrum", "Kanban", "Lean", "XP", "Hybrid Agile", "Iterative"].map((f) => (
                   <div key={f} className="framework-tag"><span className="check">✓</span>{f}</div>
                 ))}
               </div>
@@ -80,22 +164,15 @@ function Index() {
         </div>
       </section>
 
+      {/* WHY PMI-ACP */}
       <section id="why" className="why-section">
         <div className="container">
           <div className="section-header">
             <span className="section-label">Why PMI-ACP</span>
             <h2 className="section-title">Why Professionals Are Pursuing PMI-ACP®</h2>
-            <p className="section-subtitle">Employers are actively searching for professionals who can drive Agile transformation and deliver results in modern digital environments.</p>
           </div>
           <div className="benefits-grid">
-            {[
-              ["⚡","Deliver Projects Faster","Master Agile methodologies that accelerate delivery cycles and reduce time-to-market for products and services."],
-              ["🔄","Respond to Business Changes","Develop the adaptability to pivot quickly when market conditions shift or new requirements emerge."],
-              ["🤝","Improve Team Collaboration","Lead cross-functional teams with enhanced communication, transparency, and shared accountability."],
-              ["⭐","Increase Customer Satisfaction","Put customer value at the center of every sprint with iterative feedback and continuous improvement."],
-              ["🚀","Lead Agile Transformation","Drive organizational change by championing Agile practices at scale across departments."],
-              ["🌐","Thrive in Digital Environments","Excel in modern, remote-first workplaces that demand flexibility and digital fluency."],
-            ].map(([icon, title, desc]) => (
+            {BENEFITS.map(([icon, title, desc]) => (
               <div key={title} className="benefit-card">
                 <div className="benefit-icon">{icon}</div>
                 <h3>{title}</h3>
@@ -106,142 +183,50 @@ function Index() {
         </div>
       </section>
 
+      {/* INDUSTRIES */}
       <section>
         <div className="container">
           <div className="section-header">
             <span className="section-label">Global Demand</span>
-            <h2 className="section-title">In Demand Across Industries Worldwide</h2>
-            <p className="section-subtitle">Organizations around the world are adopting Agile ways of working. PMI-ACP holders are needed everywhere.</p>
+            <h2 className="section-title">In Demand Across Industries</h2>
           </div>
           <div className="industries-grid">
-            {[
-              ["💻","Technology"],["🏦","Banking & Financial Services"],["📡","Telecommunications"],
-              ["🏥","Healthcare"],["⛽","Oil and Gas"],["📊","Consulting"],
-              ["🏭","Manufacturing"],["🚀","Startups & Digital Products"],
-            ].map(([icon, name]) => (
-              <div key={name} className="industry-card">
-                <div className="industry-icon">{icon}</div>
-                <div className="industry-name">{name}</div>
-              </div>
+            {INDUSTRIES.map((name) => (
+              <div key={name} className="industry-card">{name}</div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="why-section">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-label">Career Growth</span>
-            <h2 className="section-title">Better Opportunities Await Agile Professionals</h2>
-            <p className="section-subtitle">Professionals with Agile knowledge now have access to a wider range of career opportunities and benefits.</p>
-          </div>
-          <div className="benefits-grid">
-            {[
-              ["📈","Career Growth","Accelerate your professional trajectory with credentials that open doors to senior roles."],
-              ["🌍","International Opportunities","Work with global teams and organizations that recognize and value PMI-ACP certification."],
-              ["🏠","Remote Jobs","Access flexible, location-independent roles in the growing remote work economy."],
-              ["💰","Higher Earning Potential","Command premium salaries with a certification that demonstrates proven Agile expertise."],
-              ["👑","Leadership Roles","Step into positions where you guide strategy, mentor teams, and shape organizational direction."],
-              ["🎯","Faster Promotions","Stand out in performance reviews and move up the ladder quicker than your peers."],
-            ].map(([icon, title, desc]) => (
-              <div key={title} className="benefit-card">
-                <div className="benefit-icon">{icon}</div>
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* AUDIENCE */}
       <section className="audience-section">
         <div className="container">
           <div className="section-header">
             <span className="section-label">Who Should Enroll</span>
             <h2 className="section-title">Perfect For Professionals Like You</h2>
-            <p className="section-subtitle">Whether you are looking to upskill, transition careers, or strengthen your profile, PMI-ACP is for you.</p>
           </div>
           <div className="audience-grid">
-            {[
-              ["📋","Project Managers"],["📊","Business Analysts"],["🎨","Product Managers"],["🏉","Scrum Masters"],
-              ["👥","Team Leads"],["💻","Software Professionals"],["⚙️","Operations Professionals"],["🔄","Career Transitioners"],
-            ].map(([emoji, name]) => (
-              <div key={name} className="audience-card">
-                <span className="audience-emoji">{emoji}</span>
-                <h4>{name}</h4>
-              </div>
+            {AUDIENCE.map((name) => (
+              <div key={name} className="audience-card">{name}</div>
             ))}
           </div>
         </div>
       </section>
 
-      <section>
-        <div className="container">
-          <div className="section-header">
-            <span className="section-label">Why Renzy Academy</span>
-            <h2 className="section-title">We Prepare You for Real-World Agile Excellence</h2>
-            <p className="section-subtitle">At Renzy Academy, we do not just prepare you to pass an exam. We prepare you to understand Agile deeply and apply it confidently in real work environments.</p>
-          </div>
-          <div className="training-features">
-            {[
-              ["Expert-Led PMI-ACP Training","Learn from certified Agile practitioners with years of real-world industry experience."],
-              ["Real-World Agile Scenarios","Practice with case studies and simulations drawn from actual Agile project environments."],
-              ["Practical Framework Mastery","Gain hands-on understanding of Scrum, Kanban, Lean, and Hybrid Agile approaches."],
-              ["Exam-Focused Preparation","Targeted study plans and strategies designed to maximize your exam success rate."],
-              ["Mock Questions & Guidance","Extensive practice tests with detailed explanations to build your exam confidence."],
-              ["Career Support & Mentorship","Receive personalized guidance to leverage your certification for career advancement."],
-              ["Interactive & Engaging Classes","Participate in dynamic sessions that keep you involved, not just listening."],
-              ["Supportive Learning Community","Join a network of peers and alumni who support your growth beyond the classroom."],
-            ].map(([title, desc], i) => (
-              <div key={title} className="training-card">
-                <div className="training-number">{i + 1}</div>
-                <div className="training-content">
-                  <h4>{title}</h4>
-                  <p>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* TESTIMONIALS */}
       <section className="testimonials-section">
         <div className="container">
           <div className="section-header">
             <span className="section-label">Student Stories</span>
-            <h2 className="section-title">Hear From Our Agile Community</h2>
-            <p className="section-subtitle">Real words from professionals who trained with Renzy Academy and transformed their understanding of Agile.</p>
+            <h2 className="section-title">Hear From Our Community</h2>
           </div>
           <div className="testimonials-grid">
-            {[
-              {
-                text: "I am reviewing my note now. I don't know what I was reading before I came to Renzy Academy. The Agile concept makes a lot of sense to me now. Thank you Ma for teaching me Agile.",
-                name: "Raul",
-                role: "PMP Exam Prep Cohort",
-                initial: "R",
-                stars: 5,
-              },
-              {
-                text: "Thank you for your patience in helping me break down concepts, for staying on a point until you are sure that I have actually understood it. I am truly grateful.",
-                name: "Aunty Esther",
-                role: "Agile Course Graduate",
-                initial: "E",
-                stars: 5,
-              },
-              {
-                text: "My lecture is going on very well with Mr Tayo. He is amazing. Thank you to the entire Renzy Academy team for the support and guidance throughout my journey.",
-                name: "Cohort Member",
-                role: "PMI-ACP Trainee",
-                initial: "C",
-                stars: 5,
-              },
-            ].map((t) => (
+            {TESTIMONIALS.map((t) => (
               <div key={t.name} className="testimonial-card">
                 <span className="quote-mark">"</span>
-                <div className="testimonial-stars">{"★".repeat(t.stars)}</div>
                 <p className="testimonial-text">{t.text}</p>
                 <div className="testimonial-author">
-                  <div className="testimonial-avatar">{t.initial}</div>
+                  <div className="testimonial-avatar">{t.name[0]}</div>
                   <div>
                     <div className="testimonial-name">{t.name}</div>
                     <div className="testimonial-role">{t.role}</div>
@@ -253,6 +238,7 @@ function Index() {
         </div>
       </section>
 
+      {/* CTA */}
       <section id="enroll" className="cta-section">
         <div className="container">
           <div className="cta-content">
@@ -261,22 +247,32 @@ function Index() {
               Limited Slots Available — Enroll Today
             </div>
             <h2>Position Yourself for Global Relevance</h2>
-            <p>Do not wait until the market moves ahead without you. Become an Agile-certified professional and unlock a world of opportunities.</p>
+            <p>Do not wait until the market moves ahead without you.</p>
             <div className="cta-buttons">
-              <a href="https://wa.me/" className="btn-white">💬 WhatsApp Us</a>
-              <a href="#" className="btn-outline-white">Send a DM</a>
+              <button onClick={() => setShowForm(true)} className="btn-white">Enroll Now</button>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">💬 WhatsApp Us</a>
+            </div>
+            <div className="contact-bar">
+              <a href={`tel:${PHONE.replace(/\s/g, "")}`}>📞 {PHONE}</a>
+              <span>|</span>
+              <a href={`mailto:${EMAIL}`}>✉️ {EMAIL}</a>
             </div>
           </div>
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer>
         <div className="container">
-          <a href="#" className="logo-img" style={{ justifyContent: "center", marginBottom: "1rem" }}>
+          <a href="/" className="logo-img" style={{ justifyContent: "center", marginBottom: "1rem" }}>
             <img src={LOGO_URL} alt="Renzy Academy" />
             <span className="logo-text" style={{ color: "white" }}>RENZY<<em>.</em>ACADEMY</span>
           </a>
-          <p>Preparing Agile professionals for global excellence. © 2026 Renzy Academy. All rights reserved.</p>
+          <div className="footer-contact">
+            <a href={`tel:${PHONE.replace(/\s/g, "")}`}>{PHONE}</a>
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </div>
+          <p>© 2026 Renzy Academy. All rights reserved.</p>
         </div>
       </footer>
     </div>
