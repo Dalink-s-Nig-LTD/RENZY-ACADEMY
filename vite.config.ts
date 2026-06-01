@@ -11,9 +11,49 @@ export default defineConfig({
     viteTsConfigPaths(),
     tailwindcss(),
     tanstackStart({
-      server: { entry: "server" }, // points to src/server.ts
+      server: { entry: "server" },
     }),
-    nitro({ preset: "vercel" }),
+    nitro({
+      preset: "vercel",
+      // Critical: Disable prerender to avoid Rollup circular dependency issues
+      prerender: {
+        enabled: false,
+      },
+    }),
     viteReact(),
   ],
+  // Fix Rollup module resolution for server/client boundary
+  build: {
+    rollupOptions: {
+      external: [
+        "node:async_hooks",
+        "node:stream",
+        "node:util",
+        "node:events",
+        "node:buffer",
+        "node:path",
+        "node:fs",
+        "node:url",
+        "node:crypto",
+        "node:querystring",
+        "node:zlib",
+        "node:http",
+        "node:net",
+        "node:tls",
+        "node:os",
+        "node:dns",
+        "node:dgram",
+        "node:cluster",
+        "node:module",
+        "node:vm",
+        "node:child_process",
+        "node:worker_threads",
+        "node:perf_hooks",
+        "node:diagnostics_channel",
+      ],
+    },
+  },
+  ssr: {
+    noExternal: ["@tanstack/react-query", "@tanstack/react-router"],
+  },
 });
