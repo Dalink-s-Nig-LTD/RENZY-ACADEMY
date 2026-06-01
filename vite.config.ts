@@ -6,13 +6,14 @@ import viteTsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "/",
   plugins: [
     viteTsConfigPaths(),
     tailwindcss(),
     tanstackStart({
-      server: { entry: "server" }, // keep your SSR wrapper
+      server: { entry: "server" }, // points to src/server.ts
     }),
-    nitro({ preset: "vercel" }), // ← target Vercel, not Cloudflare
+    nitro({ preset: "vercel" }),
     viteReact(),
   ],
 });
