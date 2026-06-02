@@ -19,7 +19,13 @@ declare global {
 }
 
 export function reportLovableError(error: unknown, context: Record<string, unknown> = {}) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined") {
+    console.error("[error boundary]", error);
+    return;
+  }
+
+  console.error("[error boundary]", error, context);
+
   window.__lovableEvents?.captureException?.(
     error,
     {

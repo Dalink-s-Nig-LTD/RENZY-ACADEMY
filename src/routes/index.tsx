@@ -161,12 +161,25 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Live chat request:", { name, email, message });
-    setSubmitted(true);
-    setTimeout(onClose, 3000);
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // TODO: Replace with actual API call
+      console.log("Live chat request:", { name, email, message });
+      setSubmitted(true);
+      setTimeout(onClose, 3000);
+    } catch (error) {
+      console.error("[LiveChat] Submission failed:", error);
+      setSubmitError("Failed to send your message. Please try again or contact us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -198,8 +211,11 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
           <label>Message *</label>
           <textarea required value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe your question or concern..." rows={4} />
         </div>
-        <button type="submit" className="btn-primary" style={{ width: "100%" }}>
-          Send to Support Team
+        {submitError && (
+          <p style={{ color: "#dc2626", fontSize: "0.875rem", marginBottom: "0.75rem" }}>{submitError}</p>
+        )}
+        <button type="submit" className="btn-primary" style={{ width: "100%" }} disabled={submitting}>
+          {submitting ? "Sending..." : "Send to Support Team"}
         </button>
       </form>
 
@@ -213,12 +229,25 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
 function EnrollForm({ onClose }: { onClose: () => void }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", role: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Enrollment:", form);
-    setSubmitted(true);
-    setTimeout(onClose, 3000);
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // TODO: Replace with actual API call
+      console.log("Enrollment:", form);
+      setSubmitted(true);
+      setTimeout(onClose, 3000);
+    } catch (error) {
+      console.error("[EnrollForm] Submission failed:", error);
+      setSubmitError("Failed to submit your application. Please try again or contact us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -256,7 +285,12 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
           <label>Message (Optional)</label>
           <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any questions or preferred cohort?" rows={3} />
         </div>
-        <button type="submit" className="btn-primary" style={{ width: "100%" }}>Submit Application</button>
+        {submitError && (
+          <p style={{ color: "#dc2626", fontSize: "0.875rem", marginBottom: "0.75rem" }}>{submitError}</p>
+        )}
+        <button type="submit" className="btn-primary" style={{ width: "100%" }} disabled={submitting}>
+          {submitting ? "Submitting..." : "Submit Application"}
+        </button>
       </form>
 
       <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
