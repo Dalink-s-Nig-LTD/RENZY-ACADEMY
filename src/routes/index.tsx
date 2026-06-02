@@ -36,7 +36,7 @@ interface ChatMessage {
   faqId?: number;
 }
 
-function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void }) {
+export function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void }) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "1",
@@ -156,7 +156,7 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
   );
 }
 
-function LiveChatWidget({ onClose }: { onClose: () => void }) {
+export function LiveChatWidget({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -210,7 +210,7 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
   );
 }
 
-function EnrollForm({ onClose }: { onClose: () => void }) {
+export function EnrollForm({ onClose }: { onClose: () => void }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", role: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
@@ -266,7 +266,7 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
   );
 }
 
-function Index() {
+export function Index() {
   const [showForm, setShowForm] = useState(false);
   const [showAI, setShowAI] = useState(false);
   const [showLiveChat, setShowLiveChat] = useState(false);
