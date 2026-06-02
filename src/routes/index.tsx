@@ -255,7 +255,7 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Live chat request:", { name, email, message });
+    // TODO: wire up to a backend endpoint (with CSRF protection)
     setSubmitted(true);
     setTimeout(onClose, 3000);
   };
@@ -317,7 +317,7 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Enrollment:", form);
+    // TODO: wire up to a backend endpoint (with CSRF protection)
     setSubmitted(true);
     setTimeout(onClose, 3000);
   };
