@@ -8,8 +8,8 @@ import {
   INDUSTRIES,
   AUDIENCE,
   TESTIMONIALS,
-  findRelevantFAQ,
 } from "../lib/constants";
+import { findRelevantFAQ } from "../lib/faq";
 import { SectionHeader } from "../components/SectionHeader";
 import { ModalOverlay } from "../components/ModalOverlay";
 import { SuccessConfirmation } from "../components/SuccessConfirmation";
