@@ -14,9 +14,14 @@ import { getServerConfig } from "../config.server";
 export const getGreeting = createServerFn({ method: "POST" })
   .inputValidator(z.object({ name: z.string().min(1) }))
   .handler(async ({ data }) => {
-    const config = getServerConfig();
-    return {
-      greeting: `Hello, ${data.name}!`,
-      mode: config.nodeEnv ?? "unknown",
-    };
+    try {
+      const config = getServerConfig();
+      return {
+        greeting: `Hello, ${data.name}!`,
+        mode: config.nodeEnv ?? "unknown",
+      };
+    } catch (error) {
+      console.error("[getGreeting] Failed to load server config:", error);
+      throw new Error("Unable to process greeting request");
+    }
   });
