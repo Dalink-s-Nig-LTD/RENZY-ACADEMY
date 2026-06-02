@@ -4,7 +4,7 @@ import { QueryClient } from "@tanstack/react-query";
 
 export function createRouter() {
   const queryClient = new QueryClient();
-  
+
   const router = createTanStackRouter({
     routeTree,
     context: { queryClient },
@@ -12,6 +12,10 @@ export function createRouter() {
   });
 
   return router;
+}
+
+export async function getRouter() {
+  return createRouter();
 }
 
 declare module "@tanstack/react-router" {
