@@ -1,6 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 
+import {
+  LOGO_URL,
+  WHATSAPP_LINK,
+  BENEFITS,
+  INDUSTRIES,
+  AUDIENCE,
+  TESTIMONIALS,
+  findRelevantFAQ,
+} from "../lib/constants";
+import { SectionHeader } from "../components/SectionHeader";
+import { ModalOverlay } from "../components/ModalOverlay";
+import { SuccessConfirmation } from "../components/SuccessConfirmation";
+import { ContactInfo } from "../components/ContactInfo";
+import { AiAssistantIcon } from "../components/AiAssistantIcon";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -12,108 +27,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const LOGO_URL = "/renzy-logo-mark.jpg";
-const PHONE = "+234 901 069 2401";
-const PHONE_RAW = "+2349010692401";
-const EMAIL = "info@renzyacademy.com";
-const WHATSAPP_LINK = "https://wa.me/2349010692401";
-
-const BENEFITS = [
-  ["Deliver Projects Faster", "Master Agile methodologies that accelerate delivery cycles."],
-  ["Respond to Business Changes", "Develop adaptability to pivot when market conditions shift."],
-  ["Improve Team Collaboration", "Lead cross-functional teams with transparency and accountability."],
-  ["Increase Customer Satisfaction", "Put customer value at the center of every sprint."],
-  ["Lead Agile Transformation", "Champion Agile practices at scale across departments."],
-  ["Thrive in Digital Environments", "Excel in modern, remote-first workplaces."],
-];
-
-const INDUSTRIES = ["Technology", "Banking & Finance", "Telecommunications", "Healthcare", "Oil & Gas", "Consulting", "Manufacturing", "Startups"];
-
-const AUDIENCE = ["Project Managers", "Business Analysts", "Product Managers", "Scrum Masters", "Team Leads", "Software Professionals", "Operations", "Career Transitioners"];
-
-const TESTIMONIALS = [
-  { text: "I do not know what I was reading before I came to Renzy Academy. The Agile concept makes a lot of sense to me now.", name: "Raul", role: "PMP Exam Prep" },
-  { text: "Thank you for your patience in helping me break down concepts until I actually understood them. I am truly grateful.", name: "Aunty Esther", role: "Agile Graduate" },
-  { text: "My lecture is going very well with Mr Tayo. Thank you to the entire Renzy Academy team for the support.", name: "Cohort Member", role: "PMI-ACP Trainee" },
-];
-
-const FAQ_DATABASE = [
-  {
-    id: 1,
-    question: "What is PMI-ACP certification?",
-    keywords: ["pmi-acp", "certification", "what is"],
-    answer: "PMI-ACP (Agile Certified Practitioner) is a certification offered by the Project Management Institute that validates your ability to work in Agile environments. It covers Scrum, Kanban, Lean, XP, Hybrid Agile, and Iterative Development.",
-  },
-  {
-    id: 2,
-    question: "What are the prerequisites for the PMI-ACP exam?",
-    keywords: ["prerequisite", "requirement", "eligibility", "exam"],
-    answer: "To be eligible for the PMI-ACP exam, you need: 2,000 hours of general project experience (last 5 years), 1,500 hours on Agile project teams (last 3 years), and 21 contact hours of Agile training.",
-  },
-  {
-    id: 3,
-    question: "How long is the training course?",
-    keywords: ["duration", "course length", "how long", "training"],
-    answer: "Our PMI-ACP training course is typically 40 hours of instruction, spread over 4-6 weeks depending on the cohort. This includes live sessions, practice exams, and Q&A sessions.",
-  },
-  {
-    id: 4,
-    question: "What frameworks does the course cover?",
-    keywords: ["framework", "scrum", "kanban", "lean", "xp"],
-    answer: "The course covers 6 Agile frameworks: Scrum, Kanban, Lean, Extreme Programming (XP), Hybrid Agile, and Iterative and Incremental Development.",
-  },
-  {
-    id: 5,
-    question: "Is there a money-back guarantee?",
-    keywords: ["refund", "guarantee", "money back"],
-    answer: "Yes, we offer a 14-day money-back guarantee if you are not satisfied with the course quality. Contact our support team for details.",
-  },
-  {
-    id: 6,
-    question: "When is the next cohort starting?",
-    keywords: ["cohort", "start date", "when", "next batch"],
-    answer: "Cohorts start monthly. For the exact dates of upcoming cohorts, please contact us via WhatsApp, email, or fill the enrollment form with your preferred timeline.",
-  },
-  {
-    id: 7,
-    question: "How much does the training cost?",
-    keywords: ["price", "cost", "fee", "pricing"],
-    answer: "Pricing varies based on the package and delivery format. For detailed pricing information, please reach out to our team at info@renzyacademy.com or WhatsApp: +2349010692401",
-  },
-  {
-    id: 8,
-    question: "Can I get a refund if I cannot complete the course?",
-    keywords: ["refund", "withdrawal", "cancel"],
-    answer: "Refund policies depend on when you withdraw from the course. We offer pro-rated refunds for early withdrawals. Contact our team for specific details.",
-  },
-  {
-    id: 9,
-    question: "Do you provide study materials?",
-    keywords: ["materials", "resources", "study", "books"],
-    answer: "Yes! All participants receive comprehensive study materials including: Digital course notes, Practice exams, Video recordings of all sessions, and Reference guides.",
-  },
-  {
-    id: 10,
-    question: "Is the certification globally recognized?",
-    keywords: ["global", "recognition", "international", "valid"],
-    answer: "Yes, PMI-ACP is globally recognized and valued by employers worldwide. It is respected across technology, finance, healthcare, and other industries.",
-  },
-];
-
-function findRelevantFAQ(query: string) {
-  const lowerQuery = query.toLowerCase();
-  for (const faq of FAQ_DATABASE) {
-    for (const keyword of faq.keywords) {
-      if (lowerQuery.includes(keyword)) return faq;
-    }
-  }
-  for (const faq of FAQ_DATABASE) {
-    const questionLower = faq.question.toLowerCase();
-    if (lowerQuery.split(" ").some((word) => questionLower.includes(word))) return faq;
-  }
-  return null;
-}
 
 interface ChatMessage {
   id: string;
@@ -191,11 +104,7 @@ function AIAssistant({ onConnectToLiveChat }: { onConnectToLiveChat: () => void 
         <div className="ai-header">
           <div className="ai-header-content">
             <div className="ai-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                <path d="M12 14c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z" />
-                <circle cx="12" cy="12" r="10" />
-              </svg>
+              <AiAssistantIcon />
             </div>
             <div>
               <h3>Renzy AI Assistant</h3>
@@ -262,52 +171,42 @@ function LiveChatWidget({ onClose }: { onClose: () => void }) {
 
   if (submitted) {
     return (
-      <div className="live-chat-modal">
-        <div className="live-chat-content" style={{ textAlign: "center", padding: "2rem" }}>
-          <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>✅</div>
-          <h3>Message Sent!</h3>
-          <p>Our team will contact you shortly via WhatsApp or email.</p>
-        </div>
-      </div>
+      <SuccessConfirmation
+        heading="Message Sent!"
+        message="Our team will contact you shortly via WhatsApp or email."
+      />
     );
   }
 
   return (
-    <div className="live-chat-modal" onClick={onClose}>
-      <div className="live-chat-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
-        <div className="live-chat-header">
-          <h3>Live Support</h3>
-          <p>Connect with our team</p>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Your Name *</label>
-            <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
-          </div>
-          <div className="form-group">
-            <label>Email *</label>
-            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" />
-          </div>
-          <div className="form-group">
-            <label>Message *</label>
-            <textarea required value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe your question or concern..." rows={4} />
-          </div>
-          <button type="submit" className="btn-primary" style={{ width: "100%" }}>
-            Send to Support Team
-          </button>
-        </form>
-
-        <div className="live-chat-footer">
-          <p style={{ fontSize: "0.85rem", color: "var(--r-text-light)" }}>
-            Or reach us directly:<br />
-            <a href={`tel:${PHONE_RAW}`} style={{ color: "var(--r-accent)" }}>{PHONE}</a><br />
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" style={{ color: "var(--r-accent)" }}>WhatsApp</a>
-          </p>
-        </div>
+    <ModalOverlay onClose={onClose}>
+      <div className="live-chat-header">
+        <h3>Live Support</h3>
+        <p>Connect with our team</p>
       </div>
-    </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Your Name *</label>
+          <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
+        </div>
+        <div className="form-group">
+          <label>Email *</label>
+          <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" />
+        </div>
+        <div className="form-group">
+          <label>Message *</label>
+          <textarea required value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Describe your question or concern..." rows={4} />
+        </div>
+        <button type="submit" className="btn-primary" style={{ width: "100%" }}>
+          Send to Support Team
+        </button>
+      </form>
+
+      <div className="live-chat-footer">
+        <ContactInfo variant="modal" />
+      </div>
+    </ModalOverlay>
   );
 }
 
@@ -324,53 +223,46 @@ function EnrollForm({ onClose }: { onClose: () => void }) {
 
   if (submitted) {
     return (
-      <div className="enroll-modal">
-        <div className="enroll-modal-content" style={{ textAlign: "center", padding: "3rem" }}>
-          <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>✅</div>
-          <h3>Application Received!</h3>
-          <p>We will contact you within 24 hours.</p>
-        </div>
-      </div>
+      <SuccessConfirmation
+        heading="Application Received!"
+        message="We will contact you within 24 hours."
+      />
     );
   }
 
   return (
-    <div className="enroll-modal" onClick={onClose}>
-      <div className="enroll-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
-        <h3>Enroll in PMI-ACP Training</h3>
-        <p style={{ color: "var(--r-text-light)", marginBottom: "1.5rem" }}>Fill this form and we will reach out to you shortly.</p>
-        
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Full Name *</label>
-            <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your full name" />
-          </div>
-          <div className="form-group">
-            <label>Email *</label>
-            <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
-          </div>
-          <div className="form-group">
-            <label>Phone Number *</label>
-            <input type="tel" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+234 ..." />
-          </div>
-          <div className="form-group">
-            <label>Current Role</label>
-            <input value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} placeholder="e.g. Project Manager" />
-          </div>
-          <div className="form-group">
-            <label>Message (Optional)</label>
-            <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any questions or preferred cohort?" rows={3} />
-          </div>
-          <button type="submit" className="btn-primary" style={{ width: "100%" }}>Submit Application</button>
-        </form>
+    <ModalOverlay onClose={onClose}>
+      <h3>Enroll in PMI-ACP Training</h3>
+      <p style={{ color: "var(--r-text-light)", marginBottom: "1.5rem" }}>Fill this form and we will reach out to you shortly.</p>
 
-        <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.875rem", color: "var(--r-text-light)" }}>
-          Or reach us directly:<br />
-          <a href={`tel:${PHONE_RAW}`} style={{ color: "var(--r-accent)" }}>{PHONE}</a> · <a href={`mailto:${EMAIL}`} style={{ color: "var(--r-accent)" }}>{EMAIL}</a>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Full Name *</label>
+          <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your full name" />
         </div>
+        <div className="form-group">
+          <label>Email *</label>
+          <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" />
+        </div>
+        <div className="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+234 ..." />
+        </div>
+        <div className="form-group">
+          <label>Current Role</label>
+          <input value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} placeholder="e.g. Project Manager" />
+        </div>
+        <div className="form-group">
+          <label>Message (Optional)</label>
+          <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any questions or preferred cohort?" rows={3} />
+        </div>
+        <button type="submit" className="btn-primary" style={{ width: "100%" }}>Submit Application</button>
+      </form>
+
+      <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+        <ContactInfo variant="modal" />
       </div>
-    </div>
+    </ModalOverlay>
   );
 }
 
@@ -386,17 +278,13 @@ function Index() {
       {showLiveChat && <LiveChatWidget onClose={() => setShowLiveChat(false)} />}
 
       {!showAI && (
-        <button 
+        <button
           onClick={() => setShowAI(true)}
           className="ai-chat-button"
           title="Open AI Assistant"
           aria-label="Open AI Assistant"
         >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-            <path d="M12 14c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z" />
-            <circle cx="12" cy="12" r="10" />
-          </svg>
+          <AiAssistantIcon />
         </button>
       )}
 
@@ -430,14 +318,14 @@ function Index() {
               <div className="stat"><span className="stat-number">Global</span><span className="stat-label">Recognition</span></div>
             </div>
             <div className="hero-cta-group">
-              <button onClick={() => setShowForm(true)} className="btn-primary">Start Your Journey →</button>
+              <button onClick={() => setShowForm(true)} className="btn-primary">Start Your Journey &rarr;</button>
               <a href="#why" className="btn-secondary">Learn More</a>
             </div>
           </div>
           <div className="hero-visual">
             <div className="hero-card">
               <div className="card-header">
-                <div className="card-icon">📜</div>
+                <div className="card-icon">&#x1F4DC;</div>
                 <div>
                   <div className="card-title">PMI-ACP Certified</div>
                   <div className="card-subtitle">Project Management Institute</div>
@@ -446,7 +334,7 @@ function Index() {
               <p className="card-desc">Validates your ability to work in Agile environments using:</p>
               <div className="frameworks-grid">
                 {["Scrum", "Kanban", "Lean", "XP", "Hybrid Agile", "Iterative"].map((f) => (
-                  <div key={f} className="framework-tag"><span className="check">✓</span>{f}</div>
+                  <div key={f} className="framework-tag"><span className="check">&#x2713;</span>{f}</div>
                 ))}
               </div>
             </div>
@@ -456,10 +344,7 @@ function Index() {
 
       <section id="why" className="why-section">
         <div className="container">
-          <div className="section-header">
-            <span className="section-label">Why PMI-ACP</span>
-            <h2 className="section-title">Why Professionals Are Pursuing PMI-ACP</h2>
-          </div>
+          <SectionHeader label="Why PMI-ACP" title="Why Professionals Are Pursuing PMI-ACP" />
           <div className="benefits-grid">
             {BENEFITS.map(([title, desc]) => (
               <div key={title} className="benefit-card">
@@ -473,10 +358,7 @@ function Index() {
 
       <section>
         <div className="container">
-          <div className="section-header">
-            <span className="section-label">Global Demand</span>
-            <h2 className="section-title">In Demand Across Industries</h2>
-          </div>
+          <SectionHeader label="Global Demand" title="In Demand Across Industries" />
           <div className="industries-grid">
             {INDUSTRIES.map((name) => (
               <div key={name} className="industry-card">{name}</div>
@@ -487,10 +369,7 @@ function Index() {
 
       <section className="audience-section">
         <div className="container">
-          <div className="section-header">
-            <span className="section-label">Who Should Enroll</span>
-            <h2 className="section-title">Perfect For Professionals Like You</h2>
-          </div>
+          <SectionHeader label="Who Should Enroll" title="Perfect For Professionals Like You" />
           <div className="audience-grid">
             {AUDIENCE.map((name) => (
               <div key={name} className="audience-card">{name}</div>
@@ -501,14 +380,11 @@ function Index() {
 
       <section className="testimonials-section">
         <div className="container">
-          <div className="section-header">
-            <span className="section-label">Student Stories</span>
-            <h2 className="section-title">Hear From Our Community</h2>
-          </div>
+          <SectionHeader label="Student Stories" title="Hear From Our Community" />
           <div className="testimonials-grid">
             {TESTIMONIALS.map((t) => (
               <div key={t.name} className="testimonial-card">
-                <span className="quote-mark">"</span>
+                <span className="quote-mark">&ldquo;</span>
                 <p className="testimonial-text">{t.text}</p>
                 <div className="testimonial-author">
                   <div className="testimonial-avatar">{t.name[0]}</div>
@@ -527,8 +403,8 @@ function Index() {
         <div className="container">
           <div className="cta-content">
             <div className="urgency-badge">
-              <span className="fire">🔥</span>
-              Limited Slots Available — Enroll Today
+              <span className="fire">&#x1F525;</span>
+              Limited Slots Available &mdash; Enroll Today
             </div>
             <h2>Position Yourself for Global Relevance</h2>
             <p>Do not wait until the market moves ahead without you.</p>
@@ -536,11 +412,7 @@ function Index() {
               <button onClick={() => setShowForm(true)} className="btn-white">Enroll Now</button>
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">WhatsApp Us</a>
             </div>
-            <div className="contact-bar">
-              <a href={`tel:${PHONE_RAW}`}>📞 {PHONE}</a>
-              <span>|</span>
-              <a href={`mailto:${EMAIL}`}>✉️ {EMAIL}</a>
-            </div>
+            <ContactInfo variant="inline" />
           </div>
         </div>
       </section>
@@ -551,11 +423,8 @@ function Index() {
             <img src={LOGO_URL} alt="Renzy Academy" />
             <span className="logo-text" style={{ color: "white" }}>RENZY<span style={{ color: "#E31B23" }}>.</span>ACADEMY</span>
           </a>
-          <div className="footer-contact">
-            <a href={`tel:${PHONE_RAW}`}>{PHONE}</a>
-            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-          </div>
-          <p>© 2026 Renzy Academy. All rights reserved.</p>
+          <ContactInfo variant="footer" />
+          <p>&copy; 2026 Renzy Academy. All rights reserved.</p>
         </div>
       </footer>
     </div>
