@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Index, AIAssistant, LiveChatWidget, EnrollForm } from "../index";
+import { Index, AIAssistant, LiveChatWidget, EnrollForm } from "../../routes/index";
 
 // Mock @tanstack/react-router to avoid router context errors
 vi.mock("@tanstack/react-router", () => ({

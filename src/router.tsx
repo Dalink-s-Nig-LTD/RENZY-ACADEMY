@@ -2,9 +2,9 @@ import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClient } from "@tanstack/react-query";
 
-export function createRouter() {
+export const getRouter = () => {
   const queryClient = new QueryClient();
-  
+
   const router = createTanStackRouter({
     routeTree,
     context: { queryClient },
@@ -12,10 +12,10 @@ export function createRouter() {
   });
 
   return router;
-}
+};
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: ReturnType<typeof createRouter>;
+    router: ReturnType<typeof getRouter>;
   }
 }
