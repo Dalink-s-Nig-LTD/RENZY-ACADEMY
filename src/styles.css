@@ -660,8 +660,8 @@ footer p {
   opacity: 0.8;
 }
 
-/* ========== Enrollment Modal ========== */
-.enroll-modal {
+/* ========== Modal Overlay (shared) ========== */
+.modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
@@ -674,7 +674,7 @@ footer p {
   animation: fadeIn 0.2s ease;
 }
 
-.enroll-modal-content {
+.modal-content {
   background: white;
   border-radius: 1rem;
   padding: 2rem;
@@ -710,13 +710,13 @@ footer p {
   color: var(--r-text);
 }
 
-.enroll-modal-content h3 {
+.modal-content h3 {
   color: var(--r-primary);
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.enroll-modal-content > p {
+.modal-content > p {
   color: var(--r-text-light);
   margin-bottom: 1.5rem;
 }
@@ -1057,32 +1057,7 @@ footer p {
   margin: 0;
 }
 
-/* Live Chat Modal */
-.live-chat-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 1rem;
-  animation: fadeIn 0.2s ease;
-}
-
-.live-chat-content {
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: slideUp 0.3s ease;
-}
+/* Live Chat Header (within shared modal) */
 
 .live-chat-header {
   margin-bottom: 1.5rem;

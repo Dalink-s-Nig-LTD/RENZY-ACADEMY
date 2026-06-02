@@ -184,7 +184,7 @@ describe("LiveChatWidget", () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
     const { container } = render(<LiveChatWidget onClose={onClose} />);
-    const overlay = container.querySelector(".live-chat-modal")!;
+    const overlay = container.querySelector(".modal-overlay")!;
     await user.click(overlay);
     expect(onClose).toHaveBeenCalled();
   });
@@ -219,7 +219,7 @@ describe("EnrollForm", () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
     const { container } = render(<EnrollForm onClose={onClose} />);
-    const overlay = container.querySelector(".enroll-modal")!;
+    const overlay = container.querySelector(".modal-overlay")!;
     await user.click(overlay);
     expect(onClose).toHaveBeenCalled();
   });
